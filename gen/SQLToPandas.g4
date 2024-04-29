@@ -50,7 +50,7 @@ selectList
 
 selectItem
     : columnReference
-    | aggregateFunction;
+    | aggregateFunction (AS alias)?;
 
 tableReference
     : tableName
