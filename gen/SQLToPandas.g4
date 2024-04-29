@@ -38,9 +38,8 @@ WS: [ \t\r\n]+ -> skip;
 //gramatyka
 
 query
-    : query
-    | selectStatement
-    | selectStatement orderByStatement? groupByStatement?;
+    : (selectStatement (orderByStatement? groupByStatement?)?)*;
+
 
 selectStatement
     : SELECT selectList FROM tableReference whereClause? joinClause?;

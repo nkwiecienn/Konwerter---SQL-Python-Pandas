@@ -1,4 +1,4 @@
-// Generated from C:/Users/Oliwier/IdeaProjects/sql pandas/grammar/SQLToPandas.g4 by ANTLR 4.13.1
+// Generated from C:/Users/Oliwier/IdeaProjects/Konwerter---SQL-Python-Pandas/gen/SQLToPandas.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**

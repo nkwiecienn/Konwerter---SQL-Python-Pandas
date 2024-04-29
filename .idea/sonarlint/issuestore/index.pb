@@ -4,10 +4,6 @@
 N
 src/main/java/AntlrParser.java,7\e\7e0bd0cd49900a5514c965ce60150c34a496d37a
 F
-grammar/SQLToPandas.g4,3\2\3245ff93b40142567db5e065016c8b4c243d1f35
-=
-test/test.txt,6\8\68397331a9d7a64991daa1a79b2ca5c020f70449
-F
 gen/SQLToPandas.interp,1\2\12b373decb77a696a8196b594d11d7cd2cb81b3a
 F
 gen/SQLToPandas.tokens,4\4\44cd08a99e04557e2f6a9abee33e194a05248eb1
@@ -37,3 +33,15 @@ Q.idea/sonarlint/securityhotspotstore/0/7/07efb5f3cdd4e6fad9acdb618a5de921a2aa0f
 Q.idea/sonarlint/securityhotspotstore/a/c/acc9a13fc91c4e8af8289fa49fe01ed35aa65f14,0\b\0bf2b727c62c564dad34df486603a349e2f10e33
 w
 G.idea/sonarlint/issuestore/0/7/07efb5f3cdd4e6fad9acdb618a5de921a2aa0f41,f\8\f8541c5989fd41f7a402baf87ec15f999fff7734
+>
+test/test3.txt,5\c\5c9b6f98d745841eccbd8ac2e6edd5595b8f9568
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+O
+gen/SQLToPandasBaseVisitor.java,1\8\18387ea1df01d8324990de0b6a048545c746d70f
+I
+gen/SQLToPandasLexer.java,f\0\f0ca5874d657b5dabdf7a5d5defb1c27875d70af
+L
+gen/SQLToPandasListener.java,a\d\ad470adc96429b9a8358173bb71e2a37b7943797
+K
+gen/SQLToPandasVisitor.java,7\7\77cedd47d94585be5d09376d4e3ab3c0dc21e570
