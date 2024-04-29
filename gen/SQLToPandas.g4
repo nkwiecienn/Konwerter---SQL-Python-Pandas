@@ -38,7 +38,8 @@ WS: [ \t\r\n]+ -> skip;
 //gramatyka
 
 query
-    : selectStatement
+    : query
+    | selectStatement
     | selectStatement orderByStatement? groupByStatement?;
 
 selectStatement
