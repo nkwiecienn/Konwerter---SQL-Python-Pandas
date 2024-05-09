@@ -1,3 +1,9 @@
 
+Â
+java:S6539"ŸSplit this â€œMonster Classâ€ into smaller and more specialized ones to reduce its dependencies on other classes from 23 to the maximum authorized 20 or less.(šäƒ½úÿÿÿÿ8¥½ìõ1
 T
-java:S1135"2Complete the task associated to this TODO comment.(˜•ÂÔûÿÿÿÿ8™ÏÎèõ1
+java:S1135"2Complete the task associated to this TODO comment.(˜•ÂÔûÿÿÿÿ8É½ìõ1
+X
+java:S1128";Remove this unused import 'org.antlr.v4.runtime.misc.Pair'.(ÇàŸ˜8Ö½ìõ1
+d
+java:S1128"GRemove this unused import 'org.antlr.v4.runtime.tree.ParseTreeVisitor'.(»Õåè8Ö½ìõ1

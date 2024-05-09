@@ -122,7 +122,7 @@ joinType
     | RIGHT;
 
 orderByStatement
-    : ORDER_BY tableName (ASC | DESC)?;
+    : ORDER_BY columnName (ASC | DESC)?;
 
 /*
     sort_values(by=orderByList, axis=1, ascending=(True | False))

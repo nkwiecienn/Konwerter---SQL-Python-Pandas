@@ -11,10 +11,25 @@ import java.util.ArrayList;
 
 public class AntlrParser extends SQLToPandasBaseVisitor<String> {
     ArrayList<String> tableNames = new ArrayList<>();
+    StringBuilder aggregateFunction = new StringBuilder();
 
     @Override
     public String visitQuery(SQLToPandasParser.QueryContext ctx) {
-        return visitChildren(ctx);
+        StringBuilder query = new StringBuilder();
+        query.append(visitSelectStatement(ctx.selectStatement()));
+
+        if(ctx.orderByStatement() != null) {
+            query.append(visitOrderByStatement(ctx.orderByStatement()));
+        }
+        if(ctx.groupByStatement() != null) {
+            query.append(visitGroupByStatement(ctx.groupByStatement()));
+        }
+
+        if(aggregateFunction != null) {
+            query.append(aggregateFunction);
+        }
+
+        return query.toString();
     }
 
     @Override
@@ -23,12 +38,12 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
         selectStatement.append(visitTableName(ctx.tableName()));
         tableNames.add(visitTableName(ctx.tableName()));
 
-        if(!ctx.joinClause().isEmpty()) {
-            selectStatement.append(".").append(visitJoinClause(ctx.joinClause()));
+        if(ctx.joinClause() != null) {
+            selectStatement.append(visitJoinClause(ctx.joinClause()));
         }
-        if(!ctx.whereClause().isEmpty()) {
+        if(ctx.whereClause() != null) {
             selectStatement.append("[").append(visitWhereClause(ctx.whereClause()));
-            if(!ctx.selectList().isEmpty()) {
+            if(ctx.selectList() != null) {
                 selectStatement.append(",");
                 selectStatement.append(visitSelectList(ctx.selectList()));
             }
@@ -61,7 +76,7 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
     @Override
     public String visitSelectItem(SQLToPandasParser.SelectItemContext ctx) {
         StringBuilder selectItem = new StringBuilder();
-        if(!ctx.columnReference().isEmpty()) {
+        if(ctx.columnReference() != null) {
             selectItem.append(visitColumnReference(ctx.columnReference()));
             return selectItem.toString();
         }
@@ -108,7 +123,7 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
                 expression.append(tables.get(currentReferenceIndex)).append("[").append(columnReferences.get(currentReferenceIndex)).append("]");
                 currentReferenceIndex += 1;
             } else {
-                expression.append(ctx.getChild(i));
+                expression.append(ctx.getChild(i).toString());
             }
         }
 
@@ -116,12 +131,112 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
     }
 
     @Override
+    public String visitValueList(SQLToPandasParser.ValueListContext ctx) {
+        StringBuilder valueList = new StringBuilder();
+
+        for(int i = 0; i < ctx.getChildCount(); i++) {
+            valueList.append(ctx.getChild(i).toString());
+        }
+
+        return valueList.toString();
+    }
+
+    @Override
+    public String visitJoinClause(SQLToPandasParser.JoinClauseContext ctx) {
+        StringBuilder joinClause = new StringBuilder();
+
+        joinClause.append(".join(").append(visitTableName(ctx.tableName()));
+        joinClause.append(", on=").append(visitSelectList(ctx.selectList()));
+        joinClause.append(", how=").append(visitJoinType(ctx.joinType()));
+        joinClause.append(")");
+
+        if(ctx.joinClause() != null) {
+            StringBuilder begin = new StringBuilder();
+            begin.append(visitJoinClause(ctx.joinClause()));
+
+            joinClause.reverse();
+            begin.reverse();
+
+            joinClause.append(begin);
+            joinClause.reverse();
+        }
+
+        return joinClause.toString();
+    }
+
+    @Override
+    public String visitJoinType(SQLToPandasParser.JoinTypeContext ctx) {
+        return "'" + ctx.getText() + "'";
+    }
+
+    @Override
+    public String visitOrderByStatement(SQLToPandasParser.OrderByStatementContext ctx) {
+        StringBuilder orderByStatement = new StringBuilder();
+
+        orderByStatement.append(".groupby(by=").append(visitColumnName(ctx.columnName()));
+        orderByStatement.append(",axis=1");
+        if(ctx.DESC().getText() != null) {
+            orderByStatement.append(", ascending=False");
+        }
+        orderByStatement.append(")");
+
+        return orderByStatement.toString();
+    }
+
+    @Override
+    public String visitGroupByStatement(SQLToPandasParser.GroupByStatementContext ctx) {
+        StringBuilder groupByStatement = new StringBuilder();
+
+        groupByStatement.append(".groupby(by=");
+
+        for(int i = 0; i < ctx.columnReference().size(); i++) {
+            groupByStatement.append(visitColumnReference(ctx.columnReference(i)));
+
+            if(i != ctx.columnReference().size() - 1) {
+                groupByStatement.append(",");
+            }
+        }
+
+        groupByStatement.append(")");
+
+        return groupByStatement.toString();
+    }
+
+    @Override
+    public String visitAggregateFunction(SQLToPandasParser.AggregateFunctionContext ctx) {
+        aggregateFunction.append(".agg({").append(visitColumnReference(ctx.columnReference()));
+        aggregateFunction.append(": ").append(ctx.getChild(0).getText().toLowerCase());
+        aggregateFunction.append(")");
+        return "";
+    }
+
+    @Override
     public String visitColumnReference(SQLToPandasParser.ColumnReferenceContext ctx) {
-        if(ctx.tableName().isEmpty()) {
+        if(ctx.tableName() == null) {
             return visitColumnName(ctx.columnName());
         }
 
         tableNames.add(visitTableName(ctx.tableName()));
         return visitTableName(ctx.tableName());
+    }
+
+    @Override
+    public String visitTableName(SQLToPandasParser.TableNameContext ctx) {
+        return "'" + ctx.getText() + "'";
+    }
+
+    @Override
+    public String visitValue(SQLToPandasParser.ValueContext ctx) {
+        return ctx.getText();
+    }
+
+    @Override
+    public String visitColumnName(SQLToPandasParser.ColumnNameContext ctx) {
+        return "'" + ctx.getText() + "'";
+    }
+
+    @Override
+    public String visitOperator(SQLToPandasParser.OperatorContext ctx) {
+        return ctx.getText();
     }
 }
