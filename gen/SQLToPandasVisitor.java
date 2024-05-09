@@ -1,4 +1,4 @@
-// Generated from C:/Users/Oliwier/IdeaProjects/Konwerter---SQL-Python-Pandas/gen/SQLToPandas.g4 by ANTLR 4.13.1
+// Generated from C:/Users/natal/IdeaProjects/FinalVersionKompilatory/Konwerter---SQL-Python-Pandas-main/gen/SQLToPandas.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -33,12 +33,6 @@ public interface SQLToPandasVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSelectItem(SQLToPandasParser.SelectItemContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SQLToPandasParser#tableReference}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTableReference(SQLToPandasParser.TableReferenceContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SQLToPandasParser#whereClause}.
 	 * @param ctx the parse tree
@@ -82,12 +76,6 @@ public interface SQLToPandasVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOrderByStatement(SQLToPandasParser.OrderByStatementContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SQLToPandasParser#orderByList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOrderByList(SQLToPandasParser.OrderByListContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link SQLToPandasParser#groupByStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -123,18 +111,6 @@ public interface SQLToPandasVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitColumnName(SQLToPandasParser.ColumnNameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SQLToPandasParser#schemaName}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSchemaName(SQLToPandasParser.SchemaNameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SQLToPandasParser#alias}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlias(SQLToPandasParser.AliasContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SQLToPandasParser#operator}.
 	 * @param ctx the parse tree

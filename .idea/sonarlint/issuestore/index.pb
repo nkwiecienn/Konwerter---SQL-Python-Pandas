@@ -45,3 +45,11 @@ L
 gen/SQLToPandasListener.java,a\d\ad470adc96429b9a8358173bb71e2a37b7943797
 K
 gen/SQLToPandasVisitor.java,7\7\77cedd47d94585be5d09376d4e3ab3c0dc21e570
+@
+test/example.txt,5\2\5241925d37af9676e31244404b8587f831b2e24e
+G
+src/main/java/Main.java,e\4\e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
+>
+test/text0.txt,6\8\684234f0bae0107be64795f0ddea9a362a70adbf
+=
+sqlpandas.iml,1\1\11c5374c9f58add7ac4d665c1736db9fb30ba7a6

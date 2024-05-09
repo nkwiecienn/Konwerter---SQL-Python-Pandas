@@ -1,4 +1,4 @@
-// Generated from C:/Users/Oliwier/IdeaProjects/Konwerter---SQL-Python-Pandas/gen/SQLToPandas.g4 by ANTLR 4.13.1
+// Generated from C:/Users/natal/IdeaProjects/FinalVersionKompilatory/Konwerter---SQL-Python-Pandas-main/gen/SQLToPandas.g4 by ANTLR 4.13.1
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -59,18 +59,6 @@ public class SQLToPandasBaseListener implements SQLToPandasListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSelectItem(SQLToPandasParser.SelectItemContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTableReference(SQLToPandasParser.TableReferenceContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTableReference(SQLToPandasParser.TableReferenceContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -160,18 +148,6 @@ public class SQLToPandasBaseListener implements SQLToPandasListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOrderByList(SQLToPandasParser.OrderByListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitOrderByList(SQLToPandasParser.OrderByListContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterGroupByStatement(SQLToPandasParser.GroupByStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -239,30 +215,6 @@ public class SQLToPandasBaseListener implements SQLToPandasListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitColumnName(SQLToPandasParser.ColumnNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSchemaName(SQLToPandasParser.SchemaNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSchemaName(SQLToPandasParser.SchemaNameContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterAlias(SQLToPandasParser.AliasContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitAlias(SQLToPandasParser.AliasContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

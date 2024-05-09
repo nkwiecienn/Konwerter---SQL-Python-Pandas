@@ -1,4 +1,4 @@
-// Generated from C:/Users/Oliwier/IdeaProjects/Konwerter---SQL-Python-Pandas/gen/SQLToPandas.g4 by ANTLR 4.13.1
+// Generated from C:/Users/natal/IdeaProjects/FinalVersionKompilatory/Konwerter---SQL-Python-Pandas-main/gen/SQLToPandas.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -46,16 +46,6 @@ public interface SQLToPandasListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSelectItem(SQLToPandasParser.SelectItemContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLToPandasParser#tableReference}.
-	 * @param ctx the parse tree
-	 */
-	void enterTableReference(SQLToPandasParser.TableReferenceContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLToPandasParser#tableReference}.
-	 * @param ctx the parse tree
-	 */
-	void exitTableReference(SQLToPandasParser.TableReferenceContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLToPandasParser#whereClause}.
 	 * @param ctx the parse tree
@@ -127,16 +117,6 @@ public interface SQLToPandasListener extends ParseTreeListener {
 	 */
 	void exitOrderByStatement(SQLToPandasParser.OrderByStatementContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SQLToPandasParser#orderByList}.
-	 * @param ctx the parse tree
-	 */
-	void enterOrderByList(SQLToPandasParser.OrderByListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLToPandasParser#orderByList}.
-	 * @param ctx the parse tree
-	 */
-	void exitOrderByList(SQLToPandasParser.OrderByListContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SQLToPandasParser#groupByStatement}.
 	 * @param ctx the parse tree
 	 */
@@ -196,26 +176,6 @@ public interface SQLToPandasListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitColumnName(SQLToPandasParser.ColumnNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLToPandasParser#schemaName}.
-	 * @param ctx the parse tree
-	 */
-	void enterSchemaName(SQLToPandasParser.SchemaNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLToPandasParser#schemaName}.
-	 * @param ctx the parse tree
-	 */
-	void exitSchemaName(SQLToPandasParser.SchemaNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SQLToPandasParser#alias}.
-	 * @param ctx the parse tree
-	 */
-	void enterAlias(SQLToPandasParser.AliasContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SQLToPandasParser#alias}.
-	 * @param ctx the parse tree
-	 */
-	void exitAlias(SQLToPandasParser.AliasContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SQLToPandasParser#operator}.
 	 * @param ctx the parse tree
