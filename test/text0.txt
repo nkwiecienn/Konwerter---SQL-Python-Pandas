@@ -1,1 +1,1 @@
-SELECT kolumna FROM tabela
+SELECT kolumna1, kolumna2 FROM tabela

@@ -1,6 +1,4 @@
-import org.antlr.v4.runtime.misc.Pair;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 import java.util.ArrayList;
 
@@ -64,8 +62,8 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
         }
 
         for(int i = 0; i < ctx.getChildCount(); i++) {
-            if(ctx.getChild(i).toString().equals(",")) {
-                selectList.append(",");
+            if (!ctx.getChild(i).getText().equals(",")) {
+                selectList.append(visit(ctx.getChild(i)));
             } else if (!ctx.getChild(i).toString().equals("agg")){
                 selectList.append("'").append(ctx.getChild(i).toString()).append("'");
             }

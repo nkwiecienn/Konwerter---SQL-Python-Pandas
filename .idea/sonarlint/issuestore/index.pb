@@ -51,5 +51,3 @@ G
 src/main/java/Main.java,e\4\e44a8606ce010ad9b89aafdfcee2ab49afbf6d10
 >
 test/text0.txt,6\8\684234f0bae0107be64795f0ddea9a362a70adbf
-=
-sqlpandas.iml,1\1\11c5374c9f58add7ac4d665c1736db9fb30ba7a6
