@@ -1,0 +1,19 @@
+
+7
+java:S1220""Move this file to a named package.8ΠΚΤέψ1
+~
+java:S3252!"\Use static access with "javax.swing.ScrollPaneConstants" for "VERTICAL_SCROLLBAR_AS_NEEDED".(ΰ¨Γοώÿÿÿÿ8Δ†¦έψ1
+w
+java:S3252""ZUse static access with "javax.swing.ScrollPaneConstants" for "HORIZONTAL_SCROLLBAR_NEVER".(ιαήΓ8Ε†¦έψ1
+~
+java:S3252,"\Use static access with "javax.swing.ScrollPaneConstants" for "VERTICAL_SCROLLBAR_AS_NEEDED".(Έ―›ϋύÿÿÿÿ8Η†¦έψ1
+w
+java:S3252-"ZUse static access with "javax.swing.ScrollPaneConstants" for "HORIZONTAL_SCROLLBAR_NEVER".(ΝΉ™8Θ†¦έψ1
+f
+java:S32525"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(Ά΅΄8Κ†¦έψ1
+
+java:S1130;"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(―¦άύÿÿÿÿ8ξΚΤέψ1
+Z
+java:S1874<"8Remove this use of "ANTLRInputStream"; it is deprecated.(ΊοΪ«ώÿÿÿÿ8Ο†¦έψ1
+Z
+java:S1874<"8Remove this use of "ANTLRInputStream"; it is deprecated.(ΊοΪ«ώÿÿÿÿ8Ρ†¦έψ1

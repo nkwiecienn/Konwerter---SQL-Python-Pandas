@@ -22,7 +22,6 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
         if(ctx.groupByStatement() != null) {
             query.append(visitGroupByStatement(ctx.groupByStatement()));
         }
-
         if(aggregateFunction != null) {
             query.append(aggregateFunction);
         }
@@ -84,49 +83,47 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
 
     @Override
     public String visitWhereClause(SQLToPandasParser.WhereClauseContext ctx) {
-        return visitCondition(ctx.condition());
+        return "query[" + visit(ctx.condition()) + "]";
     }
 
     @Override
     public String visitCondition(SQLToPandasParser.ConditionContext ctx) {
         StringBuilder condition = new StringBuilder();
-        for(int i = 0; i < ctx.getChildCount(); i++) {
-            condition.append(ctx.getChild(i).toString());
+
+        for (int i = 0; i < ctx.getChildCount(); i++) {
+            ParseTree child = ctx.getChild(i);
+
+            if (child instanceof SQLToPandasParser.ExpressionContext) {
+                condition.append(visit(child));
+            } else {
+                condition.append(child.getText());
+            }
         }
+
         return condition.toString();
     }
 
     @Override
     public String visitExpression(SQLToPandasParser.ExpressionContext ctx) {
         StringBuilder expression = new StringBuilder();
-        ArrayList<String> tables = new ArrayList<>();
-        ArrayList<String> columnReferences = new ArrayList<>();
-        int tablesCount = tableNames.size();
-        int currentReferenceIndex = 0;
+//        StringBuilder expression = new StringBuilder();
 
-        for(int i = 0; i < ctx.columnReference().size(); i++) {
-            columnReferences.add(visitColumnReference(ctx.columnReference(i)));
-            if(tablesCount == tableNames.size()) {
-                tables.add(tableNames.get(0));
-            } else {
-                tablesCount += 1;
-                tables.add(tableNames.get(tableNames.size() - 1));
-            }
-        }
-
-        for(int i = 0; i < ctx.getChildCount(); i++) {
+        for (int i = 0; i < ctx.getChildCount(); i++) {
             ParseTree child = ctx.getChild(i);
+            System.out.println("Child[" + i + "]: " + child.getText());
 
-            if(child instanceof SQLToPandasParser.ColumnReferenceContext) {
-                expression.append(tables.get(currentReferenceIndex)).append("[").append(columnReferences.get(currentReferenceIndex)).append("]");
-                currentReferenceIndex += 1;
-            } else {
-                expression.append(ctx.getChild(i).toString());
+            if (child instanceof SQLToPandasParser.ColumnReferenceContext) {
+                expression.append(visit(child));
+            } else if (child instanceof SQLToPandasParser.OperatorContext) {
+                expression.append(" ").append(visit(child)).append(" ");
+            } else if (child instanceof SQLToPandasParser.ValueContext) {
+                expression.append(visit(child));
             }
         }
 
         return expression.toString();
     }
+
 
     @Override
     public String visitValueList(SQLToPandasParser.ValueListContext ctx) {

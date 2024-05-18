@@ -1,2 +1,2 @@
-SELECT MAX(guest_total) AS average FROM movie_theater GROUP BY movie_genre
+SELECT MAX(guest_total) FROM movie_theater
 

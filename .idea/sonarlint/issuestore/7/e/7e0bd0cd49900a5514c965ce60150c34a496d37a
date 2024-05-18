@@ -1,8 +1,10 @@
 
 Â
 java:S6539
-"ŸSplit this â€œMonster Classâ€ into smaller and more specialized ones to reduce its dependencies on other classes from 23 to the maximum authorized 20 or less.(šäƒ½úÿÿÿÿ8¥½ìõ1
+"ŸSplit this â€œMonster Classâ€ into smaller and more specialized ones to reduce its dependencies on other classes from 23 to the maximum authorized 20 or less.(šäƒ½úÿÿÿÿ8×–»İø1
 7
-java:S1220""Move this file to a named package.8á’”÷1
+java:S1220""Move this file to a named package.8Ø–»İø1
 T
-java:S1135"2Complete the task associated to this TODO comment.(˜•ÂÔûÿÿÿÿ8É½ìõ1
+java:S1135"2Complete the task associated to this TODO comment.(˜•ÂÔûÿÿÿÿ8“Ğë—÷1
+]	java:S125m"<This block of commented-out lines of code should be removed.(Œ€šÉùÿÿÿÿ8£Ğë—÷1
+G	java:S106q"+Replace this use of System.out by a logger.(·ÑĞì8£Ğë—÷1

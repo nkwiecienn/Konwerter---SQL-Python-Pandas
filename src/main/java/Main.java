@@ -1,17 +1,15 @@
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
 
-        String fileName = "test/text0.txt";
+        String fileName = "test/test0.txt";
         File file = new File(fileName);
         FileInputStream fis = null;
 

@@ -1,1 +1,1 @@
-SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate FROM Orders INNER JOIN Customers USING CustomerID
+SELECT Orders, Customers, Orders FROM Orders INNER JOIN Customers USING CustomerID

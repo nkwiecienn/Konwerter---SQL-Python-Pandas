@@ -1,0 +1,1 @@
+SELECT kolumna1 FROM tabela where kolumna1 > 1
