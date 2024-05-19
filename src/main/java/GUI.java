@@ -1,3 +1,4 @@
+
 import Converter.CustomErrorListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -22,7 +23,6 @@ public class GUI implements ActionListener {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
-
 
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
@@ -52,7 +52,9 @@ public class GUI implements ActionListener {
         frame.add(panel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("SQL to PythonPandas");
+        frame.setPreferredSize(new Dimension(700, 400));
         frame.pack();
+        frame.setResizable(false);
         frame.setVisible(true);
     }
 

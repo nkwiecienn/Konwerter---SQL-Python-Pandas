@@ -1,12 +1,16 @@
-// Generated from C:/Users/natal/IdeaProjects/FinalFinalVersionKompilatory/Konwerter---SQL-Python-Pandas/gen/SQLToPandas.g4 by ANTLR 4.13.1
-import org.antlr.v4.runtime.atn.*;
-import org.antlr.v4.runtime.dfa.DFA;
+// Generated from C:/Users/Oliwier/IdeaProjects/Konwerter---SQL-Python-Pandas/gen/SQLToPandas.g4 by ANTLR 4.13.1
+
 import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.misc.*;
-import org.antlr.v4.runtime.tree.*;
+import org.antlr.v4.runtime.atn.ATN;
+import org.antlr.v4.runtime.atn.ATNDeserializer;
+import org.antlr.v4.runtime.atn.ParserATNSimulator;
+import org.antlr.v4.runtime.atn.PredictionContextCache;
+import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.tree.ParseTreeListener;
+import org.antlr.v4.runtime.tree.ParseTreeVisitor;
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import java.util.List;
-import java.util.Iterator;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class SQLToPandasParser extends Parser {
@@ -40,11 +44,10 @@ public class SQLToPandasParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'*'", "'='", "'!='", "'<'", "'>'", "'<='", "'>='", "'SELECT'", 
-			"'FROM'", "'WHERE'", "'IN'", "'BETWEEN'", "'LIKE'", "'IS NULL'", "'AS'", 
-			"'JOIN'", "'USING'", "'AND'", "'OR'", "'ORDER BY'", "'GROUP BY'", "'INNER'", 
-			"'LEFT'", "'RIGHT'", "'ASC'", "'DESC'", "'COUNT'", "'SUM'", "'AVG'", 
-			"'MAX'", "'MIN'", "','", "'('", "')'", "'.'"
+                null, "'*'", "'='", "'!='", "'<'", "'>'", "'<='", "'>='", null, null,
+                null, null, null, null, null, null, null, null, null, null, null, null,
+                null, null, null, null, null, null, null, null, null, null, "','", "'('",
+                "')'", "'.'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
