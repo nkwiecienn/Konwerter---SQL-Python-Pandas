@@ -2,15 +2,39 @@
 
 ***
 
+## Autorzy: Natalia kwiecień, Oliwier Maj
+
+<details>
+    <summary>Dane kontaktowe:</summary>
+
+* nkwiecien@student.agh.edu.pl
+* majoliwier@student.agh.edu.pl
+
+</details>
+
+***
+
 ## 1. Opis projektu
 
-Celem tego projektu jest stworzenie translatora z SQL do biblioteki Pandas w Pythonie. Gramatyka jest pisana używając
-Antlr 4. Może to być szczególnie przydatne dla analityków danych, którzy wolą pracować z SQL niż z komendami w Python
-Pandas.
+- Celem tego projektu jest stworzenie translatora z SQL do biblioteki Pandas w Pythonie.
+- Gramatyka oraz generator parserów stworzone przy pomocy Antlr 4.
+- Projekt może być szczególnie przydatny dla inżynierów danych, którzy wolą pracować z SQL niż z komendami w Python
+  Pandas.
+- Wynikowy kod Python jest wyświetlany w formacie łatwym do skopiowania i użycia w analizach danych.
 
 ## 2. Struktura programu
 
--
+- Gramatyka SQL została zdefiniowana w pliku `SQLToPandas.g4`. Na podstawie tej gramatyki ANTLR generuje skaner (
+  lexer) `SQLToPandasLexer`, który rozbija zapytanie SQL na podstawowe jednostki (tokeny), takie jak słowa kluczowe,
+  identyfikatory, operatory itp.
+- Tokeny wygenerowane przez skaner są przekazywane do parsera `SQLToPandasParser`, który analizuje sekwencję tokenów i
+  buduje strukturę (drzewo parsowania), przyporządkowując tokeny do odpowiednich konstrukcji gramatycznych.
+- Parser, przy wsparciu klasy `SQLToPandasVisitor`, przetwarza drzewo parsowania i generuje równoważny kod w języku
+  Python Pandas.
+- Klasa `AntlrParser` w pakiecie converter wykorzystuje wygenerowane klasy lexer i parser oraz
+  klasy `SQLToPandasListener` i `SQLToPandasVisitor`, aby przetworzyć zapytanie SQL i wygenerować odpowiedni kod Python
+  Pandas.
+
 
 ## 3. Interface
 
@@ -199,6 +223,12 @@ pozycji znaku w linii oraz komunikat o błędzie. Dzięki temu możliwe jest ła
 zapytaniach SQL.
 
 ## 7. Instrukcja obsługi
+
+1. Po uruchomieniu ```GUI.java``` wyświetli się okno aplikacji.
+2. Wprowadź zapytanie SQL w polu tekstowym po lewej stronie.
+2. Kliknij przycisk "Convert".
+3. Po prawej zostanie wygenerowany ten sam kod, ale w jezyku Python Pandas.
+4. W przypadku napotkania błędu, zamiast wygenerowanego kodu, zostanie wyświetlona informacja o błędzie.
 
 ## 8. Przydatne informacje
 
