@@ -16,7 +16,7 @@ public class CustomErrorListener extends BaseErrorListener {
                             int line, int charPositionInLine,
                             String msg,
                             RecognitionException e) {
-        errors.add("line " + line + ":" + charPositionInLine + " " + msg);
+        errors.add("line " + line + ", char position " + charPositionInLine + ": " + msg);
     }
 
     public boolean hasErrors() {

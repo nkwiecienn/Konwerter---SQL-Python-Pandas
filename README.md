@@ -10,7 +10,7 @@ Pandas.
 
 ## 2. Struktura programu
 
-- a
+-
 
 ## 3. Interface
 
@@ -176,20 +176,38 @@ operator
 Przed:
 
 ```
-
+SELECT name, age
+FROM employees
+WHERE age > 30 AND department = 'Sales'
+  OR age <= 25 AND department = 'HR'
+ORDER BY age ASC
 ```
 
 Po:
 
 ```
-
+employees[(employees['age'] > 30) & (employees['department'] == 'Sales') | (employees['age'] <= 25) & (employees['department'] == 'HR')][['name', 'age']].sort_values(by='age', ascending=True)
 ```
 
 ## 6. Obsługa błędów
 
-jakas
+W przypadku wystąpienia błędów składniowych podczas parsowania zapytań SQL, konwerter wykorzystuje
+klasę `CustomErrorListener`, która dziedziczy po `BaseErrorListener` z biblioteki ANTLR.
+
+`CustomErrorListener` przechwytuje błędy składniowe i przechowuje je w liście. Każdy błąd zawiera informacje o linii,
+pozycji znaku w linii oraz komunikat o błędzie. Dzięki temu możliwe jest łatwe monitorowanie i raportowanie problemów w
+zapytaniach SQL.
 
 ## 7. Instrukcja obsługi
 
+## 8. Przydatne informacje
+
+- Konwerter nie jest czuły na wielkość znaków, tak jak w dialektach SQL.
+- Konwerter obsługuje zapytanie takie jak:
+    - **where** - filtruje wiersze na podstawie określonego warunku.
+    - **join** - łączy różne tabele na podstawie określonych kolumn.
+    - **order by** - sortuje wyniki według określonej kolumny.
+    - **group by** - grupuje wyniki na podstawie określonych kolumn
+    - **funkcje agregujące** - funkcje pozwaljące obliczyć np. max, min, średnią.
 
 
