@@ -17,6 +17,7 @@
 ## 1. Opis projektu
 
 - Celem tego projektu jest stworzenie translatora z SQL do biblioteki Pandas w Pythonie.
+- Projekt implementowany jest w języku ```Java```.
 - Gramatyka oraz generator parserów stworzone przy pomocy Antlr 4.
 - Projekt może być szczególnie przydatny dla inżynierów danych, którzy wolą pracować z SQL niż z komendami w Python
   Pandas.
