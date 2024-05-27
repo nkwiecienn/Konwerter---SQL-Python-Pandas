@@ -21,10 +21,6 @@ B
 Q.idea/sonarlint/securityhotspotstore/a/6/a65d8af49c682769b6cfbef1c8262d8f874fc0aa,0\0\00842a988dc4ca6d6218b330037cec9b79f57452
 
 Q.idea/sonarlint/securityhotspotstore/e/f/ef113fc4f3d6388266597955f8f2b20ecd3973ea,8\9\89724fd2d7686c492650d2402e92d78883c5c0f5
-
-Q.idea/sonarlint/securityhotspotstore/7/6/76b8dc037cccc28e328988e6df704ae2160c3de7,d\a\daa616a21d7c31d7b3b4c8c9dc3a77205578e522
-
-Q.idea/sonarlint/securityhotspotstore/2/4/243929e4b92a0324ddb716ad76c014731a5fec6f,6\d\6dc0217c626c313f3c6bdad1afc6c5a9b20e1ad9
 w
 G.idea/sonarlint/issuestore/3/8/384c646b4d8d9261b9e93f5ff014285733f20f2c,9\b\9baad258d03e21c0dbd702363b1ada24c8afa8f5
 
@@ -33,8 +29,6 @@ Q.idea/sonarlint/securityhotspotstore/3/8/384c646b4d8d9261b9e93f5ff014285733f20f
 test/test0.txt,3\8\384c646b4d8d9261b9e93f5ff014285733f20f2c
 S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-
-Q.idea/sonarlint/securityhotspotstore/c/0/c09675dd11869269cf3c763bc9668d8e373efec9,0\7\07d4759e999d959886b8c412abeba81d771e7b52
 >
 test/test1.txt,4\e\4eb4a214957e250022b650d72ba6dbaa76b52119
 L
@@ -57,3 +51,5 @@ F
 gen/SQLToPandas.interp,1\2\12b373decb77a696a8196b594d11d7cd2cb81b3a
 F
 gen/SQLToPandas.tokens,4\4\44cd08a99e04557e2f6a9abee33e194a05248eb1
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec

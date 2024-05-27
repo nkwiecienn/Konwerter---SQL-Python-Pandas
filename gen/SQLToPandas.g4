@@ -60,11 +60,12 @@ NUMERICAL_VALUE: [0-9]+;
 STRING_VALUE: '\'' (~['])* '\'';
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
 WS: [ \t\r\n]+ -> skip;
+SEMICOLON: ';';
 
 //gramatyka
 
 query
-    : selectStatement (orderByStatement? groupByStatement?)?;
+    : selectStatement (orderByStatement? groupByStatement?)? SEMICOLON?;
 
 
 selectStatement

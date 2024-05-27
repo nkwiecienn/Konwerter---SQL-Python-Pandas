@@ -37,6 +37,7 @@ NUMERICAL_VALUE=36
 STRING_VALUE=37
 IDENTIFIER=38
 WS=39
+SEMICOLON=40
 '*'=1
 '='=2
 '!='=3
@@ -48,3 +49,4 @@ WS=39
 '('=33
 ')'=34
 '.'=35
+';'=40
