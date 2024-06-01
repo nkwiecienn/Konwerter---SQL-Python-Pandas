@@ -1,9 +1,11 @@
 
 Â
 java:S6539"ŸSplit this â€œMonster Classâ€ into smaller and more specialized ones to reduce its dependencies on other classes from 23 to the maximum authorized 20 or less.(šäƒ½úÿÿÿÿ8…ËÃÎû1
+L
+java:S1066G"/Merge this if statement with the enclosing one.(Úº¿£8£´ÒÌü1
 7
 java:S1220""Move this file to a named package.8¬š™Îû1
 t
-java:S3776d"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¶ƒçëûÿÿÿÿ8…³ëÑû1
+java:S3776u"RRefactor this method to reduce its Cognitive Complexity from 16 to the 15 allowed.(¶ƒçëûÿÿÿÿ8´µÒÌü1
 ‰
-java:S6201‰"fReplace this instanceof check and cast with 'instanceof ColumnReferenceContext columnreferencecontext'(»Œäıÿÿÿÿ8ˆ³ëÑû1
+java:S6201š"fReplace this instanceof check and cast with 'instanceof ColumnReferenceContext columnreferencecontext'(»Œäıÿÿÿÿ8¹µÒÌü1

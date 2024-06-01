@@ -22,10 +22,10 @@ public class SQLToPandasParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, SELECT=8, FROM=9, 
 		WHERE=10, IN=11, BETWEEN=12, LIKE=13, IS_NULL=14, AS=15, JOIN=16, USING=17, 
-		AND=18, OR=19, ORDER_BY=20, GROUP_BY=21, INNER=22, LEFT=23, RIGHT=24, 
-		ASC=25, DESC=26, COUNT=27, SUM=28, AVG=29, MAX=30, MIN=31, COMMA=32, LPAREN=33,
-			RPAREN = 34, DOT = 35, NUMERICAL_VALUE = 36, STRING_VALUE = 37, IDENTIFIER = 38,
-			WS = 39, SEMICOLON = 40;
+		AND=18, OR=19, ORDER_BY=20, GROUP_BY=21, INNER=22, LEFT=23, RIGHT=24,
+            ASC = 25, DESC = 26, COUNT = 27, SUM = 28, AVG = 29, MAX = 30, MIN = 31, LIMIT = 32, COMMA = 33,
+            LPAREN = 34, RPAREN = 35, DOT = 36, NUMERICAL_VALUE = 37, STRING_VALUE = 38, IDENTIFIER = 39,
+            WS = 40, SEMICOLON = 41;
 	public static final int
 		RULE_query = 0, RULE_selectStatement = 1, RULE_selectList = 2, RULE_selectItem = 3, 
 		RULE_whereClause = 4, RULE_condition = 5, RULE_expression = 6, RULE_valueList = 7, 
@@ -41,125 +41,130 @@ public class SQLToPandasParser extends Parser {
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
-	public static final String _serializedATN =
-			"\u0004\u0001(\u00b9\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002" +
-					"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002" +
-					"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002" +
-					"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002" +
-					"\f\u0007\f\u0002\r\u0007\r\u0002\u000e\u0007\u000e\u0002\u000f\u0007\u000f" +
-					"\u0002\u0010\u0007\u0010\u0002\u0011\u0007\u0011\u0001\u0000\u0001\u0000" +
-					"\u0003\u0000\'\b\u0000\u0001\u0000\u0003\u0000*\b\u0000\u0003\u0000,\b" +
-					"\u0000\u0001\u0000\u0003\u0000/\b\u0000\u0001\u0001\u0001\u0001\u0001" +
-					"\u0001\u0001\u0001\u0001\u0001\u0003\u00016\b\u0001\u0001\u0001\u0003" +
-					"\u00019\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0005" +
-					"\u0002?\b\u0002\n\u0002\f\u0002B\t\u0002\u0003\u0002D\b\u0002\u0001\u0003" +
-					"\u0001\u0003\u0003\u0003H\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004" +
-					"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005" +
-					"\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005" +
-					"\u0001\u0005\u0003\u0005Z\b\u0005\u0001\u0006\u0001\u0006\u0001\u0006" +
-					"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006" +
-					"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006" +
-					"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006" +
-					"\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006" +
-					"\u0003\u0006w\b\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0005\u0007" +
-					"|\b\u0007\n\u0007\f\u0007\u007f\t\u0007\u0001\b\u0001\b\u0001\b\u0001" +
-					"\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001" +
-					"\b\u0001\b\u0001\b\u0005\b\u0090\b\b\n\b\f\b\u0093\t\b\u0001\t\u0001\t" +
-					"\u0001\n\u0001\n\u0001\n\u0003\n\u009a\b\n\u0001\u000b\u0001\u000b\u0001" +
-					"\u000b\u0001\u000b\u0005\u000b\u00a0\b\u000b\n\u000b\f\u000b\u00a3\t\u000b" +
-					"\u0001\f\u0001\f\u0001\f\u0001\f\u0001\f\u0001\r\u0001\r\u0001\r\u0001" +
-					"\r\u0001\r\u0003\r\u00af\b\r\u0001\u000e\u0001\u000e\u0001\u000f\u0001" +
-					"\u000f\u0001\u0010\u0001\u0010\u0001\u0011\u0001\u0011\u0001\u0011\u0000" +
-					"\u0001\u0010\u0012\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014" +
-					"\u0016\u0018\u001a\u001c\u001e \"\u0000\u0005\u0001\u0000\u0016\u0018" +
-					"\u0001\u0000\u0019\u001a\u0001\u0000\u001b\u001f\u0001\u0000$%\u0001\u0000" +
-					"\u0002\u0007\u00bc\u0000$\u0001\u0000\u0000\u0000\u00020\u0001\u0000\u0000" +
-					"\u0000\u0004C\u0001\u0000\u0000\u0000\u0006G\u0001\u0000\u0000\u0000\b" +
-					"I\u0001\u0000\u0000\u0000\nY\u0001\u0000\u0000\u0000\fv\u0001\u0000\u0000" +
-					"\u0000\u000ex\u0001\u0000\u0000\u0000\u0010\u0080\u0001\u0000\u0000\u0000" +
-					"\u0012\u0094\u0001\u0000\u0000\u0000\u0014\u0096\u0001\u0000\u0000\u0000" +
-					"\u0016\u009b\u0001\u0000\u0000\u0000\u0018\u00a4\u0001\u0000\u0000\u0000" +
-					"\u001a\u00ae\u0001\u0000\u0000\u0000\u001c\u00b0\u0001\u0000\u0000\u0000" +
-					"\u001e\u00b2\u0001\u0000\u0000\u0000 \u00b4\u0001\u0000\u0000\u0000\"" +
-					"\u00b6\u0001\u0000\u0000\u0000$+\u0003\u0002\u0001\u0000%\'\u0003\u0014" +
-					"\n\u0000&%\u0001\u0000\u0000\u0000&\'\u0001\u0000\u0000\u0000\')\u0001" +
-					"\u0000\u0000\u0000(*\u0003\u0016\u000b\u0000)(\u0001\u0000\u0000\u0000" +
-					")*\u0001\u0000\u0000\u0000*,\u0001\u0000\u0000\u0000+&\u0001\u0000\u0000" +
-					"\u0000+,\u0001\u0000\u0000\u0000,.\u0001\u0000\u0000\u0000-/\u0005(\u0000" +
-					"\u0000.-\u0001\u0000\u0000\u0000./\u0001\u0000\u0000\u0000/\u0001\u0001" +
-					"\u0000\u0000\u000001\u0005\b\u0000\u000012\u0003\u0004\u0002\u000023\u0005" +
-					"\t\u0000\u000035\u0003\u001c\u000e\u000046\u0003\b\u0004\u000054\u0001" +
-					"\u0000\u0000\u000056\u0001\u0000\u0000\u000068\u0001\u0000\u0000\u0000" +
-					"79\u0003\u0010\b\u000087\u0001\u0000\u0000\u000089\u0001\u0000\u0000\u0000" +
-					"9\u0003\u0001\u0000\u0000\u0000:D\u0005\u0001\u0000\u0000;@\u0003\u0006" +
-					"\u0003\u0000<=\u0005 \u0000\u0000=?\u0003\u0006\u0003\u0000><\u0001\u0000" +
-					"\u0000\u0000?B\u0001\u0000\u0000\u0000@>\u0001\u0000\u0000\u0000@A\u0001" +
-					"\u0000\u0000\u0000AD\u0001\u0000\u0000\u0000B@\u0001\u0000\u0000\u0000" +
-					"C:\u0001\u0000\u0000\u0000C;\u0001\u0000\u0000\u0000D\u0005\u0001\u0000" +
-					"\u0000\u0000EH\u0003\u001a\r\u0000FH\u0003\u0018\f\u0000GE\u0001\u0000" +
-					"\u0000\u0000GF\u0001\u0000\u0000\u0000H\u0007\u0001\u0000\u0000\u0000" +
-					"IJ\u0005\n\u0000\u0000JK\u0003\n\u0005\u0000K\t\u0001\u0000\u0000\u0000" +
-					"LZ\u0003\f\u0006\u0000MN\u0003\f\u0006\u0000NO\u0005\u0012\u0000\u0000" +
-					"OP\u0003\n\u0005\u0000PZ\u0001\u0000\u0000\u0000QR\u0003\f\u0006\u0000" +
-					"RS\u0005\u0013\u0000\u0000ST\u0003\n\u0005\u0000TZ\u0001\u0000\u0000\u0000" +
-					"UV\u0005!\u0000\u0000VW\u0003\n\u0005\u0000WX\u0005\"\u0000\u0000XZ\u0001" +
-					"\u0000\u0000\u0000YL\u0001\u0000\u0000\u0000YM\u0001\u0000\u0000\u0000" +
-					"YQ\u0001\u0000\u0000\u0000YU\u0001\u0000\u0000\u0000Z\u000b\u0001\u0000" +
-					"\u0000\u0000[\\\u0003\u001a\r\u0000\\]\u0003\"\u0011\u0000]^\u0003\u001e" +
-					"\u000f\u0000^w\u0001\u0000\u0000\u0000_`\u0003\u001a\r\u0000`a\u0003\"" +
-					"\u0011\u0000ab\u0003\u001a\r\u0000bw\u0001\u0000\u0000\u0000cd\u0003\u001a" +
-					"\r\u0000de\u0005\u000b\u0000\u0000ef\u0005!\u0000\u0000fg\u0003\u000e" +
-					"\u0007\u0000gh\u0005\"\u0000\u0000hw\u0001\u0000\u0000\u0000ij\u0003\u001a" +
-					"\r\u0000jk\u0005\f\u0000\u0000kl\u0003\u001e\u000f\u0000lm\u0005\u0012" +
-					"\u0000\u0000mn\u0003\u001e\u000f\u0000nw\u0001\u0000\u0000\u0000op\u0003" +
-					"\u001a\r\u0000pq\u0005\r\u0000\u0000qr\u0003\u001e\u000f\u0000rw\u0001" +
-					"\u0000\u0000\u0000st\u0003\u001a\r\u0000tu\u0005\u000e\u0000\u0000uw\u0001" +
-					"\u0000\u0000\u0000v[\u0001\u0000\u0000\u0000v_\u0001\u0000\u0000\u0000" +
-					"vc\u0001\u0000\u0000\u0000vi\u0001\u0000\u0000\u0000vo\u0001\u0000\u0000" +
-					"\u0000vs\u0001\u0000\u0000\u0000w\r\u0001\u0000\u0000\u0000x}\u0003\u001e" +
-					"\u000f\u0000yz\u0005 \u0000\u0000z|\u0003\u001e\u000f\u0000{y\u0001\u0000" +
-					"\u0000\u0000|\u007f\u0001\u0000\u0000\u0000}{\u0001\u0000\u0000\u0000" +
-					"}~\u0001\u0000\u0000\u0000~\u000f\u0001\u0000\u0000\u0000\u007f}\u0001" +
-					"\u0000\u0000\u0000\u0080\u0081\u0006\b\uffff\uffff\u0000\u0081\u0082\u0003" +
-					"\u0012\t\u0000\u0082\u0083\u0005\u0010\u0000\u0000\u0083\u0084\u0003\u001c" +
-					"\u000e\u0000\u0084\u0085\u0005\u0011\u0000\u0000\u0085\u0086\u0003\u0004" +
-					"\u0002\u0000\u0086\u0091\u0001\u0000\u0000\u0000\u0087\u0088\n\u0001\u0000" +
-					"\u0000\u0088\u0089\u0005\u0012\u0000\u0000\u0089\u008a\u0003\u0012\t\u0000" +
-					"\u008a\u008b\u0005\u0010\u0000\u0000\u008b\u008c\u0003\u001c\u000e\u0000" +
-					"\u008c\u008d\u0005\u0011\u0000\u0000\u008d\u008e\u0003\u0004\u0002\u0000" +
-					"\u008e\u0090\u0001\u0000\u0000\u0000\u008f\u0087\u0001\u0000\u0000\u0000" +
-					"\u0090\u0093\u0001\u0000\u0000\u0000\u0091\u008f\u0001\u0000\u0000\u0000" +
-					"\u0091\u0092\u0001\u0000\u0000\u0000\u0092\u0011\u0001\u0000\u0000\u0000" +
-					"\u0093\u0091\u0001\u0000\u0000\u0000\u0094\u0095\u0007\u0000\u0000\u0000" +
-					"\u0095\u0013\u0001\u0000\u0000\u0000\u0096\u0097\u0005\u0014\u0000\u0000" +
-					"\u0097\u0099\u0003 \u0010\u0000\u0098\u009a\u0007\u0001\u0000\u0000\u0099" +
-					"\u0098\u0001\u0000\u0000\u0000\u0099\u009a\u0001\u0000\u0000\u0000\u009a" +
-					"\u0015\u0001\u0000\u0000\u0000\u009b\u009c\u0005\u0015\u0000\u0000\u009c" +
-					"\u00a1\u0003\u001a\r\u0000\u009d\u009e\u0005 \u0000\u0000\u009e\u00a0" +
-					"\u0003\u001a\r\u0000\u009f\u009d\u0001\u0000\u0000\u0000\u00a0\u00a3\u0001" +
-					"\u0000\u0000\u0000\u00a1\u009f\u0001\u0000\u0000\u0000\u00a1\u00a2\u0001" +
-					"\u0000\u0000\u0000\u00a2\u0017\u0001\u0000\u0000\u0000\u00a3\u00a1\u0001" +
-					"\u0000\u0000\u0000\u00a4\u00a5\u0007\u0002\u0000\u0000\u00a5\u00a6\u0005" +
-					"!\u0000\u0000\u00a6\u00a7\u0003\u001a\r\u0000\u00a7\u00a8\u0005\"\u0000" +
-					"\u0000\u00a8\u0019\u0001\u0000\u0000\u0000\u00a9\u00aa\u0003\u001c\u000e" +
-					"\u0000\u00aa\u00ab\u0005#\u0000\u0000\u00ab\u00ac\u0003 \u0010\u0000\u00ac" +
-					"\u00af\u0001\u0000\u0000\u0000\u00ad\u00af\u0003 \u0010\u0000\u00ae\u00a9" +
-					"\u0001\u0000\u0000\u0000\u00ae\u00ad\u0001\u0000\u0000\u0000\u00af\u001b" +
-					"\u0001\u0000\u0000\u0000\u00b0\u00b1\u0005&\u0000\u0000\u00b1\u001d\u0001" +
-					"\u0000\u0000\u0000\u00b2\u00b3\u0007\u0003\u0000\u0000\u00b3\u001f\u0001" +
-					"\u0000\u0000\u0000\u00b4\u00b5\u0005&\u0000\u0000\u00b5!\u0001\u0000\u0000" +
-					"\u0000\u00b6\u00b7\u0007\u0004\u0000\u0000\u00b7#\u0001\u0000\u0000\u0000" +
-					"\u0010&)+.58@CGYv}\u0091\u0099\u00a1\u00ae";
-	private static final String[] _LITERAL_NAMES = makeLiteralNames();
+    public static final String _serializedATN =
+            "\u0004\u0001)\u00bf\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002" +
+                    "\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002" +
+                    "\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002" +
+                    "\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002" +
+                    "\f\u0007\f\u0002\r\u0007\r\u0002\u000e\u0007\u000e\u0002\u000f\u0007\u000f" +
+                    "\u0002\u0010\u0007\u0010\u0002\u0011\u0007\u0011\u0001\u0000\u0001\u0000" +
+                    "\u0003\u0000\'\b\u0000\u0001\u0000\u0003\u0000*\b\u0000\u0003\u0000,\b" +
+                    "\u0000\u0001\u0000\u0001\u0000\u0003\u00000\b\u0000\u0001\u0000\u0003" +
+                    "\u00003\b\u0000\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001\u0001" +
+                    "\u0001\u0003\u0001:\b\u0001\u0001\u0001\u0003\u0001=\b\u0001\u0001\u0002" +
+                    "\u0001\u0002\u0001\u0002\u0001\u0002\u0005\u0002C\b\u0002\n\u0002\f\u0002" +
+                    "F\t\u0002\u0003\u0002H\b\u0002\u0001\u0003\u0001\u0003\u0003\u0003L\b" +
+                    "\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0005\u0001\u0005\u0001" +
+                    "\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001" +
+                    "\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0001\u0005\u0003\u0005^\b" +
+                    "\u0005\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001" +
+                    "\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001" +
+                    "\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001" +
+                    "\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0001" +
+                    "\u0006\u0001\u0006\u0001\u0006\u0001\u0006\u0003\u0006{\b\u0006\u0001" +
+                    "\u0007\u0001\u0007\u0001\u0007\u0005\u0007\u0080\b\u0007\n\u0007\f\u0007" +
+                    "\u0083\t\u0007\u0001\b\u0001\b\u0003\b\u0087\b\b\u0001\b\u0001\b\u0001" +
+                    "\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001\b\u0001" +
+                    "\b\u0001\b\u0005\b\u0096\b\b\n\b\f\b\u0099\t\b\u0001\t\u0001\t\u0001\n" +
+                    "\u0001\n\u0001\n\u0003\n\u00a0\b\n\u0001\u000b\u0001\u000b\u0001\u000b" +
+                    "\u0001\u000b\u0005\u000b\u00a6\b\u000b\n\u000b\f\u000b\u00a9\t\u000b\u0001" +
+                    "\f\u0001\f\u0001\f\u0001\f\u0001\f\u0001\r\u0001\r\u0001\r\u0001\r\u0001" +
+                    "\r\u0003\r\u00b5\b\r\u0001\u000e\u0001\u000e\u0001\u000f\u0001\u000f\u0001" +
+                    "\u0010\u0001\u0010\u0001\u0011\u0001\u0011\u0001\u0011\u0000\u0001\u0010" +
+                    "\u0012\u0000\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018" +
+                    "\u001a\u001c\u001e \"\u0000\u0005\u0001\u0000\u0016\u0018\u0001\u0000" +
+                    "\u0019\u001a\u0001\u0000\u001b\u001f\u0001\u0000%&\u0001\u0000\u0002\u0007" +
+                    "\u00c4\u0000$\u0001\u0000\u0000\u0000\u00024\u0001\u0000\u0000\u0000\u0004" +
+                    "G\u0001\u0000\u0000\u0000\u0006K\u0001\u0000\u0000\u0000\bM\u0001\u0000" +
+                    "\u0000\u0000\n]\u0001\u0000\u0000\u0000\fz\u0001\u0000\u0000\u0000\u000e" +
+                    "|\u0001\u0000\u0000\u0000\u0010\u0084\u0001\u0000\u0000\u0000\u0012\u009a" +
+                    "\u0001\u0000\u0000\u0000\u0014\u009c\u0001\u0000\u0000\u0000\u0016\u00a1" +
+                    "\u0001\u0000\u0000\u0000\u0018\u00aa\u0001\u0000\u0000\u0000\u001a\u00b4" +
+                    "\u0001\u0000\u0000\u0000\u001c\u00b6\u0001\u0000\u0000\u0000\u001e\u00b8" +
+                    "\u0001\u0000\u0000\u0000 \u00ba\u0001\u0000\u0000\u0000\"\u00bc\u0001" +
+                    "\u0000\u0000\u0000$+\u0003\u0002\u0001\u0000%\'\u0003\u0014\n\u0000&%" +
+                    "\u0001\u0000\u0000\u0000&\'\u0001\u0000\u0000\u0000\')\u0001\u0000\u0000" +
+                    "\u0000(*\u0003\u0016\u000b\u0000)(\u0001\u0000\u0000\u0000)*\u0001\u0000" +
+                    "\u0000\u0000*,\u0001\u0000\u0000\u0000+&\u0001\u0000\u0000\u0000+,\u0001" +
+                    "\u0000\u0000\u0000,/\u0001\u0000\u0000\u0000-.\u0005 \u0000\u0000.0\u0005" +
+                    "%\u0000\u0000/-\u0001\u0000\u0000\u0000/0\u0001\u0000\u0000\u000002\u0001" +
+                    "\u0000\u0000\u000013\u0005)\u0000\u000021\u0001\u0000\u0000\u000023\u0001" +
+                    "\u0000\u0000\u00003\u0001\u0001\u0000\u0000\u000045\u0005\b\u0000\u0000" +
+                    "56\u0003\u0004\u0002\u000067\u0005\t\u0000\u000079\u0003\u001c\u000e\u0000" +
+                    "8:\u0003\b\u0004\u000098\u0001\u0000\u0000\u00009:\u0001\u0000\u0000\u0000" +
+                    ":<\u0001\u0000\u0000\u0000;=\u0003\u0010\b\u0000<;\u0001\u0000\u0000\u0000" +
+                    "<=\u0001\u0000\u0000\u0000=\u0003\u0001\u0000\u0000\u0000>H\u0005\u0001" +
+                    "\u0000\u0000?D\u0003\u0006\u0003\u0000@A\u0005!\u0000\u0000AC\u0003\u0006" +
+                    "\u0003\u0000B@\u0001\u0000\u0000\u0000CF\u0001\u0000\u0000\u0000DB\u0001" +
+                    "\u0000\u0000\u0000DE\u0001\u0000\u0000\u0000EH\u0001\u0000\u0000\u0000" +
+                    "FD\u0001\u0000\u0000\u0000G>\u0001\u0000\u0000\u0000G?\u0001\u0000\u0000" +
+                    "\u0000H\u0005\u0001\u0000\u0000\u0000IL\u0003\u001a\r\u0000JL\u0003\u0018" +
+                    "\f\u0000KI\u0001\u0000\u0000\u0000KJ\u0001\u0000\u0000\u0000L\u0007\u0001" +
+                    "\u0000\u0000\u0000MN\u0005\n\u0000\u0000NO\u0003\n\u0005\u0000O\t\u0001" +
+                    "\u0000\u0000\u0000P^\u0003\f\u0006\u0000QR\u0003\f\u0006\u0000RS\u0005" +
+                    "\u0012\u0000\u0000ST\u0003\n\u0005\u0000T^\u0001\u0000\u0000\u0000UV\u0003" +
+                    "\f\u0006\u0000VW\u0005\u0013\u0000\u0000WX\u0003\n\u0005\u0000X^\u0001" +
+                    "\u0000\u0000\u0000YZ\u0005\"\u0000\u0000Z[\u0003\n\u0005\u0000[\\\u0005" +
+                    "#\u0000\u0000\\^\u0001\u0000\u0000\u0000]P\u0001\u0000\u0000\u0000]Q\u0001" +
+                    "\u0000\u0000\u0000]U\u0001\u0000\u0000\u0000]Y\u0001\u0000\u0000\u0000" +
+                    "^\u000b\u0001\u0000\u0000\u0000_`\u0003\u001a\r\u0000`a\u0003\"\u0011" +
+                    "\u0000ab\u0003\u001e\u000f\u0000b{\u0001\u0000\u0000\u0000cd\u0003\u001a" +
+                    "\r\u0000de\u0003\"\u0011\u0000ef\u0003\u001a\r\u0000f{\u0001\u0000\u0000" +
+                    "\u0000gh\u0003\u001a\r\u0000hi\u0005\u000b\u0000\u0000ij\u0005\"\u0000" +
+                    "\u0000jk\u0003\u000e\u0007\u0000kl\u0005#\u0000\u0000l{\u0001\u0000\u0000" +
+                    "\u0000mn\u0003\u001a\r\u0000no\u0005\f\u0000\u0000op\u0003\u001e\u000f" +
+                    "\u0000pq\u0005\u0012\u0000\u0000qr\u0003\u001e\u000f\u0000r{\u0001\u0000" +
+                    "\u0000\u0000st\u0003\u001a\r\u0000tu\u0005\r\u0000\u0000uv\u0003\u001e" +
+                    "\u000f\u0000v{\u0001\u0000\u0000\u0000wx\u0003\u001a\r\u0000xy\u0005\u000e" +
+                    "\u0000\u0000y{\u0001\u0000\u0000\u0000z_\u0001\u0000\u0000\u0000zc\u0001" +
+                    "\u0000\u0000\u0000zg\u0001\u0000\u0000\u0000zm\u0001\u0000\u0000\u0000" +
+                    "zs\u0001\u0000\u0000\u0000zw\u0001\u0000\u0000\u0000{\r\u0001\u0000\u0000" +
+                    "\u0000|\u0081\u0003\u001e\u000f\u0000}~\u0005!\u0000\u0000~\u0080\u0003" +
+                    "\u001e\u000f\u0000\u007f}\u0001\u0000\u0000\u0000\u0080\u0083\u0001\u0000" +
+                    "\u0000\u0000\u0081\u007f\u0001\u0000\u0000\u0000\u0081\u0082\u0001\u0000" +
+                    "\u0000\u0000\u0082\u000f\u0001\u0000\u0000\u0000\u0083\u0081\u0001\u0000" +
+                    "\u0000\u0000\u0084\u0086\u0006\b\uffff\uffff\u0000\u0085\u0087\u0003\u0012" +
+                    "\t\u0000\u0086\u0085\u0001\u0000\u0000\u0000\u0086\u0087\u0001\u0000\u0000" +
+                    "\u0000\u0087\u0088\u0001\u0000\u0000\u0000\u0088\u0089\u0005\u0010\u0000" +
+                    "\u0000\u0089\u008a\u0003\u001c\u000e\u0000\u008a\u008b\u0005\u0011\u0000" +
+                    "\u0000\u008b\u008c\u0003\u0004\u0002\u0000\u008c\u0097\u0001\u0000\u0000" +
+                    "\u0000\u008d\u008e\n\u0001\u0000\u0000\u008e\u008f\u0005\u0012\u0000\u0000" +
+                    "\u008f\u0090\u0003\u0012\t\u0000\u0090\u0091\u0005\u0010\u0000\u0000\u0091" +
+                    "\u0092\u0003\u001c\u000e\u0000\u0092\u0093\u0005\u0011\u0000\u0000\u0093" +
+                    "\u0094\u0003\u0004\u0002\u0000\u0094\u0096\u0001\u0000\u0000\u0000\u0095" +
+                    "\u008d\u0001\u0000\u0000\u0000\u0096\u0099\u0001\u0000\u0000\u0000\u0097" +
+                    "\u0095\u0001\u0000\u0000\u0000\u0097\u0098\u0001\u0000\u0000\u0000\u0098" +
+                    "\u0011\u0001\u0000\u0000\u0000\u0099\u0097\u0001\u0000\u0000\u0000\u009a" +
+                    "\u009b\u0007\u0000\u0000\u0000\u009b\u0013\u0001\u0000\u0000\u0000\u009c" +
+                    "\u009d\u0005\u0014\u0000\u0000\u009d\u009f\u0003 \u0010\u0000\u009e\u00a0" +
+                    "\u0007\u0001\u0000\u0000\u009f\u009e\u0001\u0000\u0000\u0000\u009f\u00a0" +
+                    "\u0001\u0000\u0000\u0000\u00a0\u0015\u0001\u0000\u0000\u0000\u00a1\u00a2" +
+                    "\u0005\u0015\u0000\u0000\u00a2\u00a7\u0003\u001a\r\u0000\u00a3\u00a4\u0005" +
+                    "!\u0000\u0000\u00a4\u00a6\u0003\u001a\r\u0000\u00a5\u00a3\u0001\u0000" +
+                    "\u0000\u0000\u00a6\u00a9\u0001\u0000\u0000\u0000\u00a7\u00a5\u0001\u0000" +
+                    "\u0000\u0000\u00a7\u00a8\u0001\u0000\u0000\u0000\u00a8\u0017\u0001\u0000" +
+                    "\u0000\u0000\u00a9\u00a7\u0001\u0000\u0000\u0000\u00aa\u00ab\u0007\u0002" +
+                    "\u0000\u0000\u00ab\u00ac\u0005\"\u0000\u0000\u00ac\u00ad\u0003\u001a\r" +
+                    "\u0000\u00ad\u00ae\u0005#\u0000\u0000\u00ae\u0019\u0001\u0000\u0000\u0000" +
+                    "\u00af\u00b0\u0003\u001c\u000e\u0000\u00b0\u00b1\u0005$\u0000\u0000\u00b1" +
+                    "\u00b2\u0003 \u0010\u0000\u00b2\u00b5\u0001\u0000\u0000\u0000\u00b3\u00b5" +
+                    "\u0003 \u0010\u0000\u00b4\u00af\u0001\u0000\u0000\u0000\u00b4\u00b3\u0001" +
+                    "\u0000\u0000\u0000\u00b5\u001b\u0001\u0000\u0000\u0000\u00b6\u00b7\u0005" +
+                    "\'\u0000\u0000\u00b7\u001d\u0001\u0000\u0000\u0000\u00b8\u00b9\u0007\u0003" +
+                    "\u0000\u0000\u00b9\u001f\u0001\u0000\u0000\u0000\u00ba\u00bb\u0005\'\u0000" +
+                    "\u0000\u00bb!\u0001\u0000\u0000\u0000\u00bc\u00bd\u0007\u0004\u0000\u0000" +
+                    "\u00bd#\u0001\u0000\u0000\u0000\u0012&)+/29<DGK]z\u0081\u0086\u0097\u009f" +
+                    "\u00a7\u00b4";
+    private static final String[] _LITERAL_NAMES = makeLiteralNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
                 null, "'*'", "'='", "'!='", "'<'", "'>'", "'<='", "'>='", null, null,
                 null, null, null, null, null, null, null, null, null, null, null, null,
-                null, null, null, null, null, null, null, null, null, null, "','", "'('",
-				"')'", "'.'", null, null, null, null, "';'"
-		};
-	}
+                null, null, null, null, null, null, null, null, null, null, null, "','",
+                "'('", "')'", "'.'", null, null, null, null, "';'"
+        };
+    }
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -211,13 +216,13 @@ public class SQLToPandasParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
-	private static String[] makeSymbolicNames() {
-		return new String[]{
-				null, null, null, null, null, null, null, null, "SELECT", "FROM", "WHERE",
-				"IN", "BETWEEN", "LIKE", "IS_NULL", "AS", "JOIN", "USING", "AND", "OR",
-				"ORDER_BY", "GROUP_BY", "INNER", "LEFT", "RIGHT", "ASC", "DESC", "COUNT",
-				"SUM", "AVG", "MAX", "MIN", "COMMA", "LPAREN", "RPAREN", "DOT", "NUMERICAL_VALUE",
-				"STRING_VALUE", "IDENTIFIER", "WS", "SEMICOLON"
+    private static String[] makeSymbolicNames() {
+        return new String[]{
+                null, null, null, null, null, null, null, null, "SELECT", "FROM", "WHERE",
+                "IN", "BETWEEN", "LIKE", "IS_NULL", "AS", "JOIN", "USING", "AND", "OR",
+                "ORDER_BY", "GROUP_BY", "INNER", "LEFT", "RIGHT", "ASC", "DESC", "COUNT",
+                "SUM", "AVG", "MAX", "MIN", "LIMIT", "COMMA", "LPAREN", "RPAREN", "DOT",
+                "NUMERICAL_VALUE", "STRING_VALUE", "IDENTIFIER", "WS", "SEMICOLON"
 		};
 	}
 
@@ -258,15 +263,27 @@ public class SQLToPandasParser extends Parser {
 				}
 				break;
 			}
+                setState(47);
+                _errHandler.sync(this);
+                _la = _input.LA(1);
+                if (_la == LIMIT) {
+                    {
+                        setState(45);
+                        match(LIMIT);
 				setState(46);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-				if (_la == SEMICOLON) {
-					{
-						setState(45);
-						match(SEMICOLON);
-					}
-				}
+                        match(NUMERICAL_VALUE);
+                    }
+                }
+
+                setState(50);
+                _errHandler.sync(this);
+                _la = _input.LA(1);
+                if (_la == SEMICOLON) {
+                    {
+                        setState(49);
+                        match(SEMICOLON);
+                    }
+                }
 
 			}
 		}
@@ -323,30 +340,30 @@ public class SQLToPandasParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-				setState(48);
+                setState(52);
 			match(SELECT);
-				setState(49);
+                setState(53);
 			selectList();
-				setState(50);
+                setState(54);
 			match(FROM);
-				setState(51);
+                setState(55);
 			tableName();
-				setState(53);
+                setState(57);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==WHERE) {
 				{
-					setState(52);
-				whereClause();
-				}
-			}
-
 				setState(56);
+                    whereClause();
+                }
+            }
+
+                setState(60);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 29360128L) != 0)) {
+                if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 29425664L) != 0)) {
 				{
-					setState(55);
+                    setState(59);
 				joinClause(0);
 				}
 			}
@@ -400,13 +417,13 @@ public class SQLToPandasParser extends Parser {
 		enterRule(_localctx, 4, RULE_selectList);
 		try {
 			int _alt;
-			setState(67);
+            setState(71);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__0:
 				enterOuterAlt(_localctx, 1);
 				{
-					setState(58);
+                    setState(62);
 				match(T__0);
 				}
 				break;
@@ -418,25 +435,25 @@ public class SQLToPandasParser extends Parser {
 			case IDENTIFIER:
 				enterOuterAlt(_localctx, 2);
 				{
-					setState(59);
+                    setState(63);
 				selectItem();
-					setState(64);
+                    setState(68);
 				_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input, 6, _ctx);
+                    _alt = getInterpreter().adaptivePredict(_input, 7, _ctx);
 				while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 					if ( _alt==1 ) {
 						{
 						{
-							setState(60);
+                            setState(64);
 						match(COMMA);
-							setState(61);
+                            setState(65);
 						selectItem();
 						}
 						} 
 					}
-					setState(66);
+                    setState(70);
 					_errHandler.sync(this);
-					_alt = getInterpreter().adaptivePredict(_input, 6, _ctx);
+                    _alt = getInterpreter().adaptivePredict(_input, 7, _ctx);
 				}
 				}
 				break;
@@ -486,13 +503,13 @@ public class SQLToPandasParser extends Parser {
 		SelectItemContext _localctx = new SelectItemContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_selectItem);
 		try {
-			setState(71);
+            setState(75);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case IDENTIFIER:
 				enterOuterAlt(_localctx, 1);
 				{
-					setState(69);
+                    setState(73);
 				columnReference();
 				}
 				break;
@@ -503,7 +520,7 @@ public class SQLToPandasParser extends Parser {
 			case MIN:
 				enterOuterAlt(_localctx, 2);
 				{
-					setState(70);
+                    setState(74);
 				aggregateFunction();
 				}
 				break;
@@ -553,9 +570,9 @@ public class SQLToPandasParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-				setState(73);
+                setState(77);
 			match(WHERE);
-				setState(74);
+                setState(78);
 			condition();
 			}
 		}
@@ -605,46 +622,46 @@ public class SQLToPandasParser extends Parser {
 		ConditionContext _localctx = new ConditionContext(_ctx, getState());
 		enterRule(_localctx, 10, RULE_condition);
 		try {
-			setState(89);
+            setState(93);
 			_errHandler.sync(this);
-			switch (getInterpreter().adaptivePredict(_input, 9, _ctx)) {
+            switch (getInterpreter().adaptivePredict(_input, 10, _ctx)) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-					setState(76);
+                    setState(80);
 				expression();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-					setState(77);
+                    setState(81);
 				expression();
-					setState(78);
+                    setState(82);
 				match(AND);
-					setState(79);
+                    setState(83);
 				condition();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-					setState(81);
+                    setState(85);
 				expression();
-					setState(82);
+                    setState(86);
 				match(OR);
-					setState(83);
+                    setState(87);
 				condition();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-					setState(85);
+                    setState(89);
 				match(LPAREN);
-					setState(86);
+                    setState(90);
 				condition();
-					setState(87);
+                    setState(91);
 				match(RPAREN);
 				}
 				break;
@@ -711,78 +728,78 @@ public class SQLToPandasParser extends Parser {
 		ExpressionContext _localctx = new ExpressionContext(_ctx, getState());
 		enterRule(_localctx, 12, RULE_expression);
 		try {
-			setState(118);
+            setState(122);
 			_errHandler.sync(this);
-			switch (getInterpreter().adaptivePredict(_input, 10, _ctx)) {
+            switch (getInterpreter().adaptivePredict(_input, 11, _ctx)) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-					setState(91);
+                    setState(95);
 				columnReference();
-					setState(92);
+                    setState(96);
 				operator();
-					setState(93);
+                    setState(97);
 				value();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-					setState(95);
+                    setState(99);
 				columnReference();
-					setState(96);
+                    setState(100);
 				operator();
-					setState(97);
+                    setState(101);
 				columnReference();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-					setState(99);
+                    setState(103);
 				columnReference();
-					setState(100);
+                    setState(104);
 				match(IN);
-					setState(101);
+                    setState(105);
 				match(LPAREN);
-					setState(102);
+                    setState(106);
 				valueList();
-					setState(103);
+                    setState(107);
 				match(RPAREN);
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-					setState(105);
+                    setState(109);
 				columnReference();
-					setState(106);
+                    setState(110);
 				match(BETWEEN);
-					setState(107);
+                    setState(111);
 				value();
-					setState(108);
+                    setState(112);
 				match(AND);
-					setState(109);
+                    setState(113);
 				value();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-					setState(111);
+                    setState(115);
 				columnReference();
-					setState(112);
+                    setState(116);
 				match(LIKE);
-					setState(113);
+                    setState(117);
 				value();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-					setState(115);
+                    setState(119);
 				columnReference();
-					setState(116);
+                    setState(120);
 				match(IS_NULL);
 				}
 				break;
@@ -837,21 +854,21 @@ public class SQLToPandasParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-				setState(120);
+                setState(124);
 			value();
-				setState(125);
+                setState(129);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-					setState(121);
+                    setState(125);
 				match(COMMA);
-					setState(122);
+                    setState(126);
 				value();
 				}
 				}
-				setState(127);
+                setState(131);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -868,46 +885,6 @@ public class SQLToPandasParser extends Parser {
 		return _localctx;
 	}
 
-	@SuppressWarnings("CheckReturnValue")
-	public static class JoinClauseContext extends ParserRuleContext {
-		public JoinTypeContext joinType() {
-			return getRuleContext(JoinTypeContext.class,0);
-		}
-		public TerminalNode JOIN() { return getToken(SQLToPandasParser.JOIN, 0); }
-		public TableNameContext tableName() {
-			return getRuleContext(TableNameContext.class,0);
-		}
-		public TerminalNode USING() { return getToken(SQLToPandasParser.USING, 0); }
-		public SelectListContext selectList() {
-			return getRuleContext(SelectListContext.class,0);
-		}
-		public JoinClauseContext joinClause() {
-			return getRuleContext(JoinClauseContext.class,0);
-		}
-		public TerminalNode AND() { return getToken(SQLToPandasParser.AND, 0); }
-		public JoinClauseContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_joinClause; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SQLToPandasListener ) ((SQLToPandasListener)listener).enterJoinClause(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SQLToPandasListener ) ((SQLToPandasListener)listener).exitJoinClause(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SQLToPandasVisitor ) return ((SQLToPandasVisitor<? extends T>)visitor).visitJoinClause(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final JoinClauseContext joinClause() throws RecognitionException {
-		return joinClause(0);
-	}
-
 	private JoinClauseContext joinClause(int _p) throws RecognitionException {
 		ParserRuleContext _parentctx = _ctx;
 		int _parentState = getState();
@@ -915,26 +892,35 @@ public class SQLToPandasParser extends Parser {
 		JoinClauseContext _prevctx = _localctx;
 		int _startState = 16;
 		enterRecursionRule(_localctx, 16, RULE_joinClause, _p);
+        int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
 			{
-				setState(129);
-			joinType();
-				setState(130);
+                setState(134);
+                _errHandler.sync(this);
+                _la = _input.LA(1);
+                if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 29360128L) != 0)) {
+                    {
+                        setState(133);
+                        joinType();
+                    }
+                }
+
+                setState(136);
 			match(JOIN);
-				setState(131);
+                setState(137);
 			tableName();
-				setState(132);
+                setState(138);
 			match(USING);
-				setState(133);
+                setState(139);
 			selectList();
 			}
 			_ctx.stop = _input.LT(-1);
-				setState(145);
+                setState(151);
 			_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input, 12, _ctx);
+                _alt = getInterpreter().adaptivePredict(_input, 14, _ctx);
 			while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1 ) {
 					if ( _parseListeners!=null ) triggerExitRuleEvent();
@@ -943,26 +929,26 @@ public class SQLToPandasParser extends Parser {
 					{
 					_localctx = new JoinClauseContext(_parentctx, _parentState);
 					pushNewRecursionContext(_localctx, _startState, RULE_joinClause);
-						setState(135);
+                        setState(141);
 					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-						setState(136);
+                        setState(142);
 					match(AND);
-						setState(137);
+                        setState(143);
 					joinType();
-						setState(138);
+                        setState(144);
 					match(JOIN);
-						setState(139);
+                        setState(145);
 					tableName();
-						setState(140);
+                        setState(146);
 					match(USING);
-						setState(141);
-					selectList();
-					}
-					} 
-				}
-				setState(147);
+                        setState(147);
+                        selectList();
+                    }
+                    }
+                }
+                setState(153);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input, 12, _ctx);
+                _alt = getInterpreter().adaptivePredict(_input, 14, _ctx);
 			}
 			}
 		}
@@ -973,6 +959,40 @@ public class SQLToPandasParser extends Parser {
 		}
 		finally {
 			unrollRecursionContexts(_parentctx);
+		}
+		return _localctx;
+	}
+
+	public final JoinClauseContext joinClause() throws RecognitionException {
+		return joinClause(0);
+	}
+
+	public final JoinTypeContext joinType() throws RecognitionException {
+		JoinTypeContext _localctx = new JoinTypeContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_joinType);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+                setState(154);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 29360128L) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
 		}
 		return _localctx;
 	}
@@ -1001,23 +1021,35 @@ public class SQLToPandasParser extends Parser {
 		}
 	}
 
-	public final JoinTypeContext joinType() throws RecognitionException {
-		JoinTypeContext _localctx = new JoinTypeContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_joinType);
+	public final OrderByStatementContext orderByStatement() throws RecognitionException {
+		OrderByStatementContext _localctx = new OrderByStatementContext(_ctx, getState());
+		enterRule(_localctx, 20, RULE_orderByStatement);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-				setState(148);
+                setState(156);
+			match(ORDER_BY);
+                setState(157);
+			columnName();
+                setState(159);
+			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 29360128L) != 0)) ) {
-			_errHandler.recoverInline(this);
+			if (_la==ASC || _la==DESC) {
+				{
+                    setState(158);
+				_la = _input.LA(1);
+				if ( !(_la==ASC || _la==DESC) ) {
+				_errHandler.recoverInline(this);
+				}
+				else {
+					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+					_errHandler.reportMatch(this);
+					consume();
+				}
+				}
 			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -1058,35 +1090,33 @@ public class SQLToPandasParser extends Parser {
 		}
 	}
 
-	public final OrderByStatementContext orderByStatement() throws RecognitionException {
-		OrderByStatementContext _localctx = new OrderByStatementContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_orderByStatement);
+	public final GroupByStatementContext groupByStatement() throws RecognitionException {
+		GroupByStatementContext _localctx = new GroupByStatementContext(_ctx, getState());
+		enterRule(_localctx, 22, RULE_groupByStatement);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-				setState(150);
-			match(ORDER_BY);
-				setState(151);
-			columnName();
-				setState(153);
+                setState(161);
+			match(GROUP_BY);
+                setState(162);
+			columnReference();
+                setState(167);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if (_la==ASC || _la==DESC) {
+			while (_la==COMMA) {
 				{
-					setState(152);
+				{
+                    setState(163);
+				match(COMMA);
+                    setState(164);
+				columnReference();
+				}
+				}
+                setState(169);
+				_errHandler.sync(this);
 				_la = _input.LA(1);
-				if ( !(_la==ASC || _la==DESC) ) {
-				_errHandler.recoverInline(this);
-				}
-				else {
-					if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-					_errHandler.reportMatch(this);
-					consume();
-				}
-				}
 			}
-
 			}
 		}
 		catch (RecognitionException re) {
@@ -1132,33 +1162,29 @@ public class SQLToPandasParser extends Parser {
 		}
 	}
 
-	public final GroupByStatementContext groupByStatement() throws RecognitionException {
-		GroupByStatementContext _localctx = new GroupByStatementContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_groupByStatement);
+	public final AggregateFunctionContext aggregateFunction() throws RecognitionException {
+		AggregateFunctionContext _localctx = new AggregateFunctionContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_aggregateFunction);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-				setState(155);
-			match(GROUP_BY);
-				setState(156);
-			columnReference();
-				setState(161);
-			_errHandler.sync(this);
+                setState(170);
 			_la = _input.LA(1);
-			while (_la==COMMA) {
-				{
-				{
-					setState(157);
-				match(COMMA);
-					setState(158);
-				columnReference();
-				}
-				}
-				setState(163);
-				_errHandler.sync(this);
-				_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 4160749568L) != 0)) ) {
+			_errHandler.recoverInline(this);
 			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+                setState(171);
+			match(LPAREN);
+                setState(172);
+			columnReference();
+                setState(173);
+			match(RPAREN);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1203,29 +1229,33 @@ public class SQLToPandasParser extends Parser {
 		}
 	}
 
-	public final AggregateFunctionContext aggregateFunction() throws RecognitionException {
-		AggregateFunctionContext _localctx = new AggregateFunctionContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_aggregateFunction);
-		int _la;
+	public final ColumnReferenceContext columnReference() throws RecognitionException {
+		ColumnReferenceContext _localctx = new ColumnReferenceContext(_ctx, getState());
+		enterRule(_localctx, 26, RULE_columnReference);
 		try {
-			enterOuterAlt(_localctx, 1);
-			{
-				setState(164);
-			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 4160749568L) != 0)) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
-				setState(165);
-			match(LPAREN);
-				setState(166);
-			columnReference();
-				setState(167);
-			match(RPAREN);
+            setState(180);
+			_errHandler.sync(this);
+            switch (getInterpreter().adaptivePredict(_input, 17, _ctx)) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				{
+                    setState(175);
+				tableName();
+                    setState(176);
+				match(DOT);
+                    setState(177);
+				columnName();
+				}
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+                    setState(179);
+				columnName();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -1267,33 +1297,14 @@ public class SQLToPandasParser extends Parser {
 		}
 	}
 
-	public final ColumnReferenceContext columnReference() throws RecognitionException {
-		ColumnReferenceContext _localctx = new ColumnReferenceContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_columnReference);
+	public final TableNameContext tableName() throws RecognitionException {
+		TableNameContext _localctx = new TableNameContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_tableName);
 		try {
-			setState(174);
-			_errHandler.sync(this);
-			switch (getInterpreter().adaptivePredict(_input, 15, _ctx)) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				{
-					setState(169);
-				tableName();
-					setState(170);
-				match(DOT);
-					setState(171);
-				columnName();
-				}
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-					setState(173);
-				columnName();
-				}
-				break;
+			enterOuterAlt(_localctx, 1);
+			{
+                setState(182);
+			match(IDENTIFIER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1329,14 +1340,23 @@ public class SQLToPandasParser extends Parser {
 		}
 	}
 
-	public final TableNameContext tableName() throws RecognitionException {
-		TableNameContext _localctx = new TableNameContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_tableName);
+	public final ValueContext value() throws RecognitionException {
+		ValueContext _localctx = new ValueContext(_ctx, getState());
+		enterRule(_localctx, 30, RULE_value);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-				setState(176);
-			match(IDENTIFIER);
+                setState(184);
+			_la = _input.LA(1);
+			if ( !(_la==NUMERICAL_VALUE || _la==STRING_VALUE) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -1373,23 +1393,14 @@ public class SQLToPandasParser extends Parser {
 		}
 	}
 
-	public final ValueContext value() throws RecognitionException {
-		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_value);
-		int _la;
+	public final ColumnNameContext columnName() throws RecognitionException {
+		ColumnNameContext _localctx = new ColumnNameContext(_ctx, getState());
+		enterRule(_localctx, 32, RULE_columnName);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-				setState(178);
-			_la = _input.LA(1);
-			if ( !(_la==NUMERICAL_VALUE || _la==STRING_VALUE) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
+                setState(186);
+			match(IDENTIFIER);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1425,14 +1436,23 @@ public class SQLToPandasParser extends Parser {
 		}
 	}
 
-	public final ColumnNameContext columnName() throws RecognitionException {
-		ColumnNameContext _localctx = new ColumnNameContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_columnName);
+	public final OperatorContext operator() throws RecognitionException {
+		OperatorContext _localctx = new OperatorContext(_ctx, getState());
+		enterRule(_localctx, 34, RULE_operator);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-				setState(180);
-			match(IDENTIFIER);
+                setState(188);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 252L) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -1467,34 +1487,57 @@ public class SQLToPandasParser extends Parser {
 		}
 	}
 
-	public final OperatorContext operator() throws RecognitionException {
-		OperatorContext _localctx = new OperatorContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_operator);
-		int _la;
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-				setState(182);
-			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 252L) != 0)) ) {
-			_errHandler.recoverInline(this);
-			}
-			else {
-				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
-				_errHandler.reportMatch(this);
-				consume();
-			}
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
+    @SuppressWarnings("CheckReturnValue")
+    public static class QueryContext extends ParserRuleContext {
+        public QueryContext(ParserRuleContext parent, int invokingState) {
+            super(parent, invokingState);
+        }
+
+        public SelectStatementContext selectStatement() {
+            return getRuleContext(SelectStatementContext.class, 0);
+        }
+
+        public TerminalNode LIMIT() {
+            return getToken(SQLToPandasParser.LIMIT, 0);
+        }
+
+        public TerminalNode NUMERICAL_VALUE() {
+            return getToken(SQLToPandasParser.NUMERICAL_VALUE, 0);
+        }
+
+        public TerminalNode SEMICOLON() {
+            return getToken(SQLToPandasParser.SEMICOLON, 0);
+        }
+
+        public OrderByStatementContext orderByStatement() {
+            return getRuleContext(OrderByStatementContext.class, 0);
+        }
+
+        public GroupByStatementContext groupByStatement() {
+            return getRuleContext(GroupByStatementContext.class, 0);
+        }
+
+        @Override
+        public int getRuleIndex() {
+            return RULE_query;
+        }
+
+        @Override
+        public void enterRule(ParseTreeListener listener) {
+            if (listener instanceof SQLToPandasListener) ((SQLToPandasListener) listener).enterQuery(this);
+        }
+
+        @Override
+        public void exitRule(ParseTreeListener listener) {
+            if (listener instanceof SQLToPandasListener) ((SQLToPandasListener) listener).exitQuery(this);
+        }
+
+        @Override
+        public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+            if (visitor instanceof SQLToPandasVisitor)
+                return ((SQLToPandasVisitor<? extends T>) visitor).visitQuery(this);
+            else return visitor.visitChildren(this);
+        }
 	}
 
 	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
@@ -1513,46 +1556,38 @@ public class SQLToPandasParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class QueryContext extends ParserRuleContext {
-		public QueryContext(ParserRuleContext parent, int invokingState) {
+	public static class JoinClauseContext extends ParserRuleContext {
+		public TerminalNode JOIN() { return getToken(SQLToPandasParser.JOIN, 0); }
+		public TableNameContext tableName() {
+			return getRuleContext(TableNameContext.class,0);
+		}
+		public TerminalNode USING() { return getToken(SQLToPandasParser.USING, 0); }
+		public SelectListContext selectList() {
+			return getRuleContext(SelectListContext.class,0);
+		}
+
+        public JoinTypeContext joinType() {
+            return getRuleContext(JoinTypeContext.class, 0);
+        }
+		public JoinClauseContext joinClause() {
+			return getRuleContext(JoinClauseContext.class,0);
+		}
+		public TerminalNode AND() { return getToken(SQLToPandasParser.AND, 0); }
+		public JoinClauseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-
-		public SelectStatementContext selectStatement() {
-			return getRuleContext(SelectStatementContext.class, 0);
-		}
-
-		public TerminalNode SEMICOLON() {
-			return getToken(SQLToPandasParser.SEMICOLON, 0);
-		}
-
-		public OrderByStatementContext orderByStatement() {
-			return getRuleContext(OrderByStatementContext.class, 0);
-		}
-
-		public GroupByStatementContext groupByStatement() {
-			return getRuleContext(GroupByStatementContext.class, 0);
-		}
-
-		@Override
-		public int getRuleIndex() {
-			return RULE_query;
-		}
-
+		@Override public int getRuleIndex() { return RULE_joinClause; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if (listener instanceof SQLToPandasListener) ((SQLToPandasListener) listener).enterQuery(this);
+			if ( listener instanceof SQLToPandasListener ) ((SQLToPandasListener)listener).enterJoinClause(this);
 		}
-
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if (listener instanceof SQLToPandasListener) ((SQLToPandasListener) listener).exitQuery(this);
+			if ( listener instanceof SQLToPandasListener ) ((SQLToPandasListener)listener).exitJoinClause(this);
 		}
-
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if (visitor instanceof SQLToPandasVisitor)
-				return ((SQLToPandasVisitor<? extends T>) visitor).visitQuery(this);
+			if ( visitor instanceof SQLToPandasVisitor ) return ((SQLToPandasVisitor<? extends T>)visitor).visitJoinClause(this);
 			else return visitor.visitChildren(this);
 		}
 	}

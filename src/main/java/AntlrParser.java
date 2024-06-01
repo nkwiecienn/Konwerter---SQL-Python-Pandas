@@ -5,20 +5,27 @@ import java.util.ArrayList;
 public class AntlrParser extends SQLToPandasBaseVisitor<String> {
     ArrayList<String> tableNames = new ArrayList<>();
     StringBuilder aggregateFunction = new StringBuilder();
+    boolean hasAggregateFunction = false;
+    ArrayList<String> selectColumns = new ArrayList<>();
+    ArrayList<String> aggregateColumns = new ArrayList<>();
+    boolean isInWhereClause = false;
 
     @Override
     public String visitQuery(SQLToPandasParser.QueryContext ctx) {
         StringBuilder query = new StringBuilder();
         query.append(visitSelectStatement(ctx.selectStatement()));
 
-        if (ctx.orderByStatement() != null) {
-            query.append(visitOrderByStatement(ctx.orderByStatement()));
-        }
         if (ctx.groupByStatement() != null) {
             query.append(visitGroupByStatement(ctx.groupByStatement()));
         }
         if (aggregateFunction.length() > 0) {
-            query.append(aggregateFunction);
+            query.append(aggregateFunction).append(").reset_index()");
+        }
+        if (ctx.orderByStatement() != null) {
+            query.append(visitOrderByStatement(ctx.orderByStatement()));
+        }
+        if (ctx.LIMIT() != null) {
+            query.append(".head(").append(ctx.NUMERICAL_VALUE().getText()).append(")");
         }
 
         return query.toString();
@@ -32,14 +39,17 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
         tableNames.add(tableName);
 
         boolean hasWhereClause = ctx.whereClause() != null;
-        if (ctx.joinClause() != null) {
-            selectStatement.append(visitJoinClause(ctx.joinClause()));
-        }
         if (hasWhereClause) {
             selectStatement.append(visitWhereClause(ctx.whereClause()));
         }
-        if (ctx.selectList() != null && !visitSelectList(ctx.selectList()).equals("*")) {
-            selectStatement.append("[[").append(visitSelectListWithoutTable(ctx.selectList())).append("]]");
+        if (ctx.selectList() != null) {
+            visitSelectList(ctx.selectList());
+            if (!selectColumns.isEmpty()) {
+                selectStatement.append("[[").append(String.join(", ", selectColumns)).append("]]");
+            }
+        }
+        if (ctx.joinClause() != null) {
+            selectStatement.append(visitJoinClause(ctx.joinClause()));
         }
 
         return selectStatement.toString();
@@ -47,7 +57,10 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
 
     @Override
     public String visitSelectList(SQLToPandasParser.SelectListContext ctx) {
-        StringBuilder selectList = new StringBuilder();
+        hasAggregateFunction = false;
+        aggregateFunction.setLength(0);
+        selectColumns.clear();
+        aggregateColumns.clear();
 
         if (ctx.getChild(0).toString().equals("*")) {
             return "*";
@@ -55,31 +68,18 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
 
         for (int i = 0; i < ctx.getChildCount(); i++) {
             if (!ctx.getChild(i).getText().equals(",")) {
-                if (selectList.length() > 0) {
-                    selectList.append(", ");
+                if (ctx.getChild(i) instanceof SQLToPandasParser.SelectItemContext) {
+                    String item = visit(ctx.getChild(i));
+                    if (hasAggregateFunction) {
+                        aggregateColumns.add(item);
+                    } else {
+                        selectColumns.add("'" + item + "'");
+                    }
                 }
-                selectList.append(visit(ctx.getChild(i)));
             }
         }
-        return selectList.toString();
-    }
 
-    private String visitSelectListWithoutTable(SQLToPandasParser.SelectListContext ctx) {
-        StringBuilder selectList = new StringBuilder();
-
-        if (ctx.getChild(0).toString().equals("*")) {
-            return "*";
-        }
-
-        for (int i = 0; i < ctx.getChildCount(); i++) {
-            if (!ctx.getChild(i).getText().equals(",")) {
-                if (selectList.length() > 0) {
-                    selectList.append(", ");
-                }
-                selectList.append("'").append(ctx.getChild(i).getText()).append("'");
-            }
-        }
-        return selectList.toString();
+        return "";
     }
 
     @Override
@@ -88,12 +88,29 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
             return visitColumnReference(ctx.columnReference());
         }
         visitAggregateFunction(ctx.aggregateFunction());
+        hasAggregateFunction = true;
+        return "";
+    }
+
+    @Override
+    public String visitAggregateFunction(SQLToPandasParser.AggregateFunctionContext ctx) {
+        if (aggregateFunction.length() == 0) {
+            aggregateFunction.append(".agg({");
+        } else {
+            aggregateFunction.append(", ");
+        }
+        String columnName = ctx.columnReference().columnName().getText();
+        String aggFunction = ctx.getChild(0).getText().toLowerCase();
+        aggregateFunction.append("'").append(columnName).append("': '").append(aggFunction).append("'");
         return "";
     }
 
     @Override
     public String visitWhereClause(SQLToPandasParser.WhereClauseContext ctx) {
-        return "[" + visit(ctx.condition()) + "]";
+        isInWhereClause = true;
+        String result = "[" + visit(ctx.condition()) + "]";
+        isInWhereClause = false;
+        return result;
     }
 
     @Override
@@ -166,8 +183,15 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
         StringBuilder joinClause = new StringBuilder();
 
         joinClause.append(".merge(").append(visitTableName(ctx.tableName()));
-        joinClause.append(", on=").append(visitJoinColumnList(ctx.selectList()));
-        joinClause.append(", how=").append(visitJoinType(ctx.joinType()));
+
+        String joinColumns = visitJoinColumnList(ctx.selectList());
+        if (joinColumns.startsWith("[") && joinColumns.endsWith("]") && joinColumns.contains(",")) {
+            joinClause.append(", on=").append(joinColumns);
+        } else {
+            joinClause.append(", on=").append(joinColumns.replace("[", "").replace("]", ""));
+        }
+
+        joinClause.append(", how=").append(ctx.joinType() == null ? "'inner'" : visitJoinType(ctx.joinType()));
         joinClause.append(")");
 
         if (ctx.joinClause() != null) {
@@ -204,7 +228,7 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
         groupByStatement.append(".groupby(");
 
         for (int i = 0; i < ctx.columnReference().size(); i++) {
-            groupByStatement.append(visitColumnReference(ctx.columnReference(i)));
+            groupByStatement.append("'").append(visitColumnReference(ctx.columnReference(i))).append("'");
 
             if (i != ctx.columnReference().size() - 1) {
                 groupByStatement.append(", ");
@@ -217,16 +241,12 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
     }
 
     @Override
-    public String visitAggregateFunction(SQLToPandasParser.AggregateFunctionContext ctx) {
-        aggregateFunction.append(".agg({").append(visitColumnReference(ctx.columnReference()));
-        aggregateFunction.append(": '").append(ctx.getChild(0).getText().toLowerCase()).append("'");
-        aggregateFunction.append("})");
-        return "";
-    }
-
-    @Override
     public String visitColumnReference(SQLToPandasParser.ColumnReferenceContext ctx) {
-        return tableNames.get(0) + "['" + ctx.getText() + "']";
+        String columnName = ctx.getText();
+        if (isInWhereClause) {
+            return tableNames.get(tableNames.size() - 1) + "['" + columnName + "']";
+        }
+        return columnName;
     }
 
     @Override

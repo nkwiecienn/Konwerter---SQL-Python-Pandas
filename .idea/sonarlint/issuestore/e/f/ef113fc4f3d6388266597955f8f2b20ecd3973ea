@@ -11,6 +11,8 @@ w
 java:S3252-"ZUse static access with "javax.swing.ScrollPaneConstants" for "HORIZONTAL_SCROLLBAR_NEVER".(ÍŠ¹™8»´ü­ù1
 f
 java:S32525"IUse static access with "javax.swing.WindowConstants" for "EXIT_ON_CLOSE".(¢¡´8¼´ü­ù1
+Ž
+java:S1130="lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(¯¦Üýÿÿÿÿ8Ú¶íü1
 Z
 java:S1874>"8Remove this use of "ANTLRInputStream"; it is deprecated.(ºïÚ«þÿÿÿÿ8½´ü­ù1
 Z

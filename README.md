@@ -18,7 +18,7 @@
 
 - Celem tego projektu jest stworzenie translatora z SQL do biblioteki Pandas w Pythonie.
 - Projekt implementowany jest w języku ```Java```.
-- Gramatyka oraz generator parserów stworzone przy pomocy Antlr 4.
+- Gramatyka oraz generator parserów stworzone przy pomocy ```Antlr 4```.
 - Projekt może być szczególnie przydatny dla inżynierów danych, którzy wolą pracować z SQL niż z komendami w Python
   Pandas.
 - Wynikowy kod Python jest wyświetlany w formacie łatwym do skopiowania i użycia w analizach danych.
@@ -99,7 +99,6 @@ SUM: S U M;
 AVG: A V G;
 MAX: M A X;
 MIN: M I N;
-LIMIT: L I M I T;
 COMMA: ',';
 LPAREN: '(';
 RPAREN: ')';
@@ -108,6 +107,7 @@ NUMERICAL_VALUE: [0-9]+;
 STRING_VALUE: '\'' (~['])* '\'';
 IDENTIFIER: [a-zA-Z_][a-zA-Z0-9_]*;
 WS: [ \t\r\n]+ -> skip;
+SEMICOLON: ';';
 ```
 
 </div>
@@ -122,7 +122,7 @@ WS: [ \t\r\n]+ -> skip;
 
 ```
 query
-    : selectStatement (orderByStatement? groupByStatement? (LIMIT NUMERICAL_VALUE)?)?;
+    : selectStatement (orderByStatement? groupByStatement?)? SEMICOLON?;
 
 
 selectStatement
