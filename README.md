@@ -2,7 +2,7 @@
 
 ***
 
-## Autorzy: Natalia kwiecień, Oliwier Maj
+## Autorzy: Natalia Kwiecień, Oliwier Maj
 
 <details>
     <summary>Dane kontaktowe:</summary>
