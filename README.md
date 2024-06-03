@@ -99,6 +99,7 @@ SUM: S U M;
 AVG: A V G;
 MAX: M A X;
 MIN: M I N;
+LIMIT: L I M I T;
 COMMA: ',';
 LPAREN: '(';
 RPAREN: ')';
@@ -122,7 +123,7 @@ SEMICOLON: ';';
 
 ```
 query
-    : selectStatement (orderByStatement? groupByStatement?)? SEMICOLON?;
+    : selectStatement (orderByStatement? groupByStatement?)? (LIMIT NUMERICAL_VALUE)? SEMICOLON?;
 
 
 selectStatement
@@ -138,7 +139,7 @@ selectItem
 
 whereClause
     : WHERE condition;
-    
+
 condition
     : expression
     | expression AND condition
@@ -157,7 +158,7 @@ valueList
     : value (COMMA value)*;
 
 joinClause
-    : joinType JOIN tableName USING selectList
+    : joinType? JOIN tableName USING selectList
     | joinClause AND joinType JOIN tableName USING selectList;
 
 joinType
