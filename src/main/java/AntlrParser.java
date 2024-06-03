@@ -19,7 +19,7 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
             query.append(visitGroupByStatement(ctx.groupByStatement()));
         }
         if (aggregateFunction.length() > 0) {
-            query.append(aggregateFunction).append(").reset_index()");
+            query.append(aggregateFunction).append("}).reset_index()");
         }
         if (ctx.orderByStatement() != null) {
             query.append(visitOrderByStatement(ctx.orderByStatement()));
@@ -72,6 +72,7 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
                     String item = visit(ctx.getChild(i));
                     if (hasAggregateFunction) {
                         aggregateColumns.add(item);
+                        selectColumns.add("'" + item + "'");
                     } else {
                         selectColumns.add("'" + item + "'");
                     }
@@ -87,9 +88,9 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
         if (ctx.columnReference() != null) {
             return visitColumnReference(ctx.columnReference());
         }
-        visitAggregateFunction(ctx.aggregateFunction());
         hasAggregateFunction = true;
-        return "";
+        return visitAggregateFunction(ctx.aggregateFunction());
+        //return "";
     }
 
     @Override
@@ -102,7 +103,7 @@ public class AntlrParser extends SQLToPandasBaseVisitor<String> {
         String columnName = ctx.columnReference().columnName().getText();
         String aggFunction = ctx.getChild(0).getText().toLowerCase();
         aggregateFunction.append("'").append(columnName).append("': '").append(aggFunction).append("'");
-        return "";
+        return columnName;
     }
 
     @Override
